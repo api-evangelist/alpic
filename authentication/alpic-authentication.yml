@@ -1,0 +1,27 @@
+generated: '2026-07-17'
+method: searched
+source: openapi/alpic-openapi-original.json
+docs: https://docs.alpic.ai/api-reference
+agentic_auth:
+  register_uri: https://api.alpic.ai/agent/auth
+  skill: https://alpic.ai/auth.md
+  assertion_type: urn:ietf:params:oauth:token-type:id-jag
+  credential_type: api_key
+  notes: Agents can self-register for a non-expiring API key via identity assertion (ID-JAG); see /.well-known/oauth-authorization-server agent_auth block.
+oidc:
+  authorization_servers:
+    - https://cognito-idp.us-east-1.amazonaws.com/us-east-1_GWVpeD5h1
+    - https://api.alpic.ai/
+  scopes_supported: [openid, email, profile]
+  source: well-known/alpic-oauth-protected-resource.json
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: Bearer token for authentication. Use an API key from the API Keys page in team
+    settings, or an OAuth access token.
+  sources:
+  - openapi/alpic-openapi-original.json
