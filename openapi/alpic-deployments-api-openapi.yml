@@ -1,0 +1,144 @@
+openapi: 3.1.1
+info:
+  title: Alpic analytics deployments API
+  version: 1.0.0
+servers:
+- url: https://api.alpic.ai
+security:
+- bearerAuth: []
+tags:
+- name: deployments
+paths:
+  /v1/deployments/{deploymentId}:
+    get:
+      operationId: deployments.get.v1
+      summary: Get a deployment
+      description: Get a deployment by ID
+      tags:
+      - deployments
+      parameters:
+      - name: deploymentId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the deployment
+      responses:
+        '200':
+          description: The deployment details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    enum:
+                    - ongoing
+                    - deployed
+                    - failed
+                    - canceled
+                    type: string
+                  sourceRef:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                  sourceCommitId:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                  sourceCommitMessage:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                  authorUsername:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                  authorAvatarUrl:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                  startedAt:
+                    anyOf:
+                    - type: string
+                      format: date-time
+                      x-native-type: date
+                    - type: 'null'
+                  completedAt:
+                    anyOf:
+                    - type: string
+                      format: date-time
+                      x-native-type: date
+                    - type: 'null'
+                  environmentId:
+                    type: string
+                  environmentName:
+                    type: string
+                  isCurrent:
+                    type: boolean
+                  deploymentPageUrl:
+                    anyOf:
+                    - type: string
+                      format: uri
+                    - type: 'null'
+                required:
+                - id
+                - status
+                - sourceRef
+                - sourceCommitId
+                - sourceCommitMessage
+                - authorUsername
+                - authorAvatarUrl
+                - startedAt
+                - completedAt
+                - environmentId
+                - environmentName
+                - isCurrent
+                - deploymentPageUrl
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: Bearer token for authentication. Use an API key from the API Keys page in team settings, or an OAuth access token.
+      scheme: bearer

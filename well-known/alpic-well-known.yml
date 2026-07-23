@@ -1,0 +1,24 @@
+generated: '2026-07-17'
+method: searched
+host: https://api.alpic.ai
+documents:
+  - path: /.well-known/oauth-protected-resource   # RFC 9728
+    status: 200
+    file: alpic-oauth-protected-resource.json
+  - path: /.well-known/oauth-authorization-server  # RFC 8414 (+ agent_auth extension)
+    status: 200
+    file: alpic-oauth-authorization-server.json
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/security.txt                # RFC 9116
+    status: 404
+  - path: /.well-known/api-catalog                 # RFC 9727
+    status: 404
+notes: >-
+  api.alpic.ai advertises an OAuth 2.0 protected-resource + authorization-server pair.
+  The authorization-server metadata carries a non-standard agent_auth block that points
+  agents to a published auth skill (https://alpic.ai/auth.md) and a register_uri
+  (https://api.alpic.ai/agent/auth) for programmatic (agentic) API-key registration via
+  identity assertion (urn:ietf:params:oauth:token-type:id-jag). One of the two
+  authorization servers listed on the protected-resource document is an Amazon Cognito
+  user pool (cognito-idp.us-east-1.amazonaws.com).

@@ -1,7 +1,15 @@
 aid: alpic
 name: Alpic
-description: 'Alpic is a company surfaced as a portfolio company of partech and added to the API Evangelist
-  network as a stub for enrichment. Sector: AI/ML. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  Alpic is the MCP-native cloud platform for building, deploying, monitoring, and distributing
+  Model Context Protocol (MCP) servers and ChatGPT Apps. Its stack spans the open-source Skybridge
+  TypeScript framework, the `alpic` CLI, Alpic Cloud (one-click deploy, multi-environment support,
+  runtime and build logs, analytics, DCR proxy, Node.js/Python runtimes), Beacon compliance audits,
+  and one-click distribution to the MCP registry. The Alpic REST API (https://api.alpic.ai, v1)
+  programmatically manages teams, projects, environments, environment variables, deployments,
+  analytics, playgrounds, tunnels, distribution, and Beacon audits, with an agentic self-registration
+  path so AI agents can obtain an API key and ship MCP servers autonomously. Founded by the repeat
+  team behind Streamroot; backed by Partech.
 url: https://raw.githubusercontent.com/api-evangelist/alpic/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -9,18 +17,261 @@ x-backed-by:
 - partech
 x-tier: stub
 x-tier-reason: portfolio-lead
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 specificationVersion: '0.20'
 created: '2026-07-17'
 modified: '2026-07-17'
+image: https://framerusercontent.com/images/WZiXUn1MVLa0eLUmTzKrnFH9tUs.png
 tags:
 - Company
 - Ai/Ml
-apis: []
+- MCP
+- Model Context Protocol
+- Cloud Platform
+- Developer Tools
+- Deployment
+- ChatGPT Apps
+- Agentic
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: alpic:alpic-analytics-api
+  name: Alpic analytics API
+  description: The analytics API from Alpic — 1 operation(s) for analytics.
+  humanURL: https://docs.alpic.ai/api-reference
+  baseURL: https://api.alpic.ai
+  tags:
+  - analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/alpic-analytics-api-openapi.yml
+  - type: OAuthScopes
+    url: scopes/alpic-scopes.yml
+  - type: ErrorCatalog
+    url: errors/alpic-problem-types.yml
+  - type: Conventions
+    url: conventions/alpic-conventions.yml
+  - type: DataModel
+    url: data-model/alpic-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/alpic-lifecycle.yml
+  - type: Conformance
+    url: conformance/alpic-conformance.yml
+- aid: alpic:alpic-beacon-api
+  name: Alpic beacon API
+  description: The beacon API from Alpic — 2 operation(s) for beacon.
+  humanURL: https://docs.alpic.ai/api-reference
+  baseURL: https://api.alpic.ai
+  tags:
+  - beacon
+  properties:
+  - type: OpenAPI
+    url: openapi/alpic-beacon-api-openapi.yml
+  - type: OAuthScopes
+    url: scopes/alpic-scopes.yml
+  - type: ErrorCatalog
+    url: errors/alpic-problem-types.yml
+  - type: Conventions
+    url: conventions/alpic-conventions.yml
+  - type: DataModel
+    url: data-model/alpic-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/alpic-lifecycle.yml
+  - type: Conformance
+    url: conformance/alpic-conformance.yml
+- aid: alpic:alpic-deployments-api
+  name: Alpic deployments API
+  description: The deployments API from Alpic — 1 operation(s) for deployments.
+  humanURL: https://docs.alpic.ai/api-reference
+  baseURL: https://api.alpic.ai
+  tags:
+  - deployments
+  properties:
+  - type: OpenAPI
+    url: openapi/alpic-deployments-api-openapi.yml
+  - type: OAuthScopes
+    url: scopes/alpic-scopes.yml
+  - type: ErrorCatalog
+    url: errors/alpic-problem-types.yml
+  - type: Conventions
+    url: conventions/alpic-conventions.yml
+  - type: DataModel
+    url: data-model/alpic-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/alpic-lifecycle.yml
+  - type: Conformance
+    url: conformance/alpic-conformance.yml
+- aid: alpic:alpic-distribution-api
+  name: Alpic distribution API
+  description: The distribution API from Alpic — 2 operation(s) for distribution.
+  humanURL: https://docs.alpic.ai/api-reference
+  baseURL: https://api.alpic.ai
+  tags:
+  - distribution
+  properties:
+  - type: OpenAPI
+    url: openapi/alpic-distribution-api-openapi.yml
+  - type: OAuthScopes
+    url: scopes/alpic-scopes.yml
+  - type: ErrorCatalog
+    url: errors/alpic-problem-types.yml
+  - type: Conventions
+    url: conventions/alpic-conventions.yml
+  - type: DataModel
+    url: data-model/alpic-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/alpic-lifecycle.yml
+  - type: Conformance
+    url: conformance/alpic-conformance.yml
+- aid: alpic:alpic-environments-api
+  name: Alpic environments API
+  description: The environments API from Alpic — 8 operation(s) for environments.
+  humanURL: https://docs.alpic.ai/api-reference
+  baseURL: https://api.alpic.ai
+  tags:
+  - environments
+  properties:
+  - type: OpenAPI
+    url: openapi/alpic-environments-api-openapi.yml
+  - type: OAuthScopes
+    url: scopes/alpic-scopes.yml
+  - type: ErrorCatalog
+    url: errors/alpic-problem-types.yml
+  - type: Conventions
+    url: conventions/alpic-conventions.yml
+  - type: DataModel
+    url: data-model/alpic-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/alpic-lifecycle.yml
+  - type: Conformance
+    url: conformance/alpic-conformance.yml
+- aid: alpic:alpic-projects-api
+  name: Alpic projects API
+  description: The projects API from Alpic — 2 operation(s) for projects.
+  humanURL: https://docs.alpic.ai/api-reference
+  baseURL: https://api.alpic.ai
+  tags:
+  - projects
+  properties:
+  - type: OpenAPI
+    url: openapi/alpic-projects-api-openapi.yml
+  - type: OAuthScopes
+    url: scopes/alpic-scopes.yml
+  - type: ErrorCatalog
+    url: errors/alpic-problem-types.yml
+  - type: Conventions
+    url: conventions/alpic-conventions.yml
+  - type: DataModel
+    url: data-model/alpic-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/alpic-lifecycle.yml
+  - type: Conformance
+    url: conformance/alpic-conformance.yml
+- aid: alpic:alpic-teams-api
+  name: Alpic teams API
+  description: The teams API from Alpic — 1 operation(s) for teams.
+  humanURL: https://docs.alpic.ai/api-reference
+  baseURL: https://api.alpic.ai
+  tags:
+  - teams
+  properties:
+  - type: OpenAPI
+    url: openapi/alpic-teams-api-openapi.yml
+  - type: OAuthScopes
+    url: scopes/alpic-scopes.yml
+  - type: ErrorCatalog
+    url: errors/alpic-problem-types.yml
+  - type: Conventions
+    url: conventions/alpic-conventions.yml
+  - type: DataModel
+    url: data-model/alpic-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/alpic-lifecycle.yml
+  - type: Conformance
+    url: conformance/alpic-conformance.yml
+- aid: alpic:alpic-tunnels-api
+  name: Alpic tunnels API
+  description: The tunnels API from Alpic — 1 operation(s) for tunnels.
+  humanURL: https://docs.alpic.ai/api-reference
+  baseURL: https://api.alpic.ai
+  tags:
+  - tunnels
+  properties:
+  - type: OpenAPI
+    url: openapi/alpic-tunnels-api-openapi.yml
+  - type: OAuthScopes
+    url: scopes/alpic-scopes.yml
+  - type: ErrorCatalog
+    url: errors/alpic-problem-types.yml
+  - type: Conventions
+    url: conventions/alpic-conventions.yml
+  - type: DataModel
+    url: data-model/alpic-data-model.yml
+  - type: Lifecycle
+    url: lifecycle/alpic-lifecycle.yml
+  - type: Conformance
+    url: conformance/alpic-conformance.yml
 common:
+- type: DeveloperPortal
+  url: https://docs.alpic.ai
+- type: Documentation
+  url: https://docs.alpic.ai
+- type: APIReference
+  url: https://docs.alpic.ai/api-reference
+- type: GettingStarted
+  url: https://docs.alpic.ai/quickstart
+- type: CLI
+  url: cli/alpic-cli.yml
+- type: SDKs
+  url: packages/alpic-packages.yml
+- type: Packages
+  url: packages/alpic-packages.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: WellKnown
+  url: well-known/alpic-well-known.yml
+- type: LLMsTxt
+  url: llms/alpic-llms.txt
+- type: Authentication
+  url: authentication/alpic-authentication.yml
+- type: DomainSecurity
+  url: security/alpic-domain-security.yml
+- type: TrustCenter
+  url: https://trust.alpic.ai/
+- type: AgenticAccess
+  url: agentic-access/alpic-agentic-access.yml
+- type: GitHubOrganization
+  url: https://github.com/alpic-ai
+- type: Blog
+  url: https://alpic.ai/blog
+- type: Pricing
+  url: https://alpic.ai/pricing
+- type: SignUp
+  url: https://app.alpic.ai
+- type: Support
+  url: https://alpic.ai/contact
+- type: TermsOfService
+  url: https://alpic.ai/legal/terms
+- type: PrivacyPolicy
+  url: https://alpic.ai/legal/privacy
 - type: Website
   url: https://alpic.ai/
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

@@ -1,0 +1,28 @@
+{
+  "provider": "alpic",
+  "sources": [
+    "alpic-analytics-api-openapi.yml",
+    "alpic-beacon-api-openapi.yml",
+    "alpic-deployments-api-openapi.yml",
+    "alpic-distribution-api-openapi.yml",
+    "alpic-environments-api-openapi.yml",
+    "alpic-projects-api-openapi.yml",
+    "alpic-teams-api-openapi.yml",
+    "alpic-tunnels-api-openapi.yml"
+  ],
+  "outputs": [
+    "alpic-analytics-api-openapi.yml",
+    "alpic-beacon-api-openapi.yml",
+    "alpic-deployments-api-openapi.yml",
+    "alpic-distribution-api-openapi.yml",
+    "alpic-environments-api-openapi.yml",
+    "alpic-projects-api-openapi.yml",
+    "alpic-teams-api-openapi.yml",
+    "alpic-tunnels-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

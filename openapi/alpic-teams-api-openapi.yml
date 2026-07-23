@@ -1,0 +1,49 @@
+openapi: 3.1.1
+info:
+  title: Alpic analytics teams API
+  version: 1.0.0
+servers:
+- url: https://api.alpic.ai
+security:
+- bearerAuth: []
+tags:
+- name: teams
+paths:
+  /v1/teams:
+    get:
+      operationId: teams.list.v1
+      summary: List teams
+      description: List all teams for the authenticated user
+      tags:
+      - teams
+      responses:
+        '200':
+          description: The list of teams
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    createdAt:
+                      type: string
+                      format: date-time
+                      x-native-type: date
+                    hasStripeAccount:
+                      type: boolean
+                  required:
+                  - id
+                  - name
+                  - createdAt
+                  - hasStripeAccount
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: Bearer token for authentication. Use an API key from the API Keys page in team settings, or an OAuth access token.
+      scheme: bearer

@@ -1,0 +1,46 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/alpic-openapi-original.json
+format: custom-json
+envelope:
+  description: >-
+    Alpic error responses are JSON objects (not RFC 9457 application/problem+json). Each error
+    carries a boolean `defined` flag, a machine-readable `code`, the numeric HTTP `status`, a
+    human `message`, and an optional `data` object with additional detail.
+  fields:
+    - defined
+    - code
+    - status
+    - message
+    - data
+problems:
+  - code: BAD_REQUEST
+    status: 400
+    title: Bad Request
+    remediation: Validate the request body/query against the OpenAPI schema; check required fields and field patterns.
+    source_operations:
+      - openapi/alpic-openapi-original.json#environments.create.v1
+      - openapi/alpic-openapi-original.json#projects.create.v1
+      - openapi/alpic-openapi-original.json#analytics.get.v1
+  - code: DNS_RESOLUTION_FAILED
+    status: 400
+    title: DNS resolution failed
+    remediation: The custom domain could not be resolved; verify DNS records for the project/environment domain.
+    source_operations:
+      - openapi/alpic-openapi-original.json#distribution.publish.v1
+  - code: FORBIDDEN
+    status: 403
+    title: Forbidden
+    remediation: The authenticated principal lacks permission (e.g. tunnel tickets require user auth, not API keys), or plan/quota limits apply.
+    source_operations:
+      - openapi/alpic-openapi-original.json#tunnels.getTicket.v1
+      - openapi/alpic-openapi-original.json#projects.create.v1
+      - openapi/alpic-openapi-original.json#projects.update.v1
+  - code: NOT_FOUND
+    status: 404
+    title: Not Found
+    remediation: The referenced team/project/environment/deployment/audit ID does not exist or is not visible to the caller.
+    source_operations:
+      - openapi/alpic-openapi-original.json#projects.get.v1
+      - openapi/alpic-openapi-original.json#environments.get.v1
+      - openapi/alpic-openapi-original.json#deployments.get.v1

@@ -1,0 +1,1 @@
+{"resource":"https://api.alpic.ai/","authorization_servers":["https://cognito-idp.us-east-1.amazonaws.com/us-east-1_GWVpeD5h1","https://api.alpic.ai/"],"bearer_methods_supported":["header"],"scopes_supported":["openid","email","profile"],"resource_documentation":"https://docs.alpic.ai"}

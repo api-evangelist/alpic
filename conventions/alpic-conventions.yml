@@ -1,0 +1,41 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.alpic.ai/api-reference.md
+authentication:
+  style: bearer
+  header: 'Authorization: Bearer <API_KEY_or_OAuth_access_token>'
+  api_key: API keys created from the API Keys tab in team settings (shown once, non-retrievable).
+  oauth: OAuth access tokens accepted; OIDC login via Amazon Cognito authorization server.
+  agentic: >-
+    Agents can self-register for a (non-expiring) API key without a human sign-up form via
+    POST https://api.alpic.ai/agent/auth using an identity assertion (ID-JAG,
+    urn:ietf:params:oauth:token-type:id-jag). See skills/alpic-agent-auth.md and
+    /.well-known/oauth-authorization-server agent_auth block.
+  ref: authentication/alpic-authentication.yml
+base_url: https://api.alpic.ai
+versioning:
+  style: uri-path
+  current: v1
+  ref: lifecycle/alpic-lifecycle.yml
+pagination:
+  style: cursor
+  params: [limit, nextToken]
+  response_field: nextToken
+  notes: List and log endpoints accept a limit and an opaque nextToken cursor; the response carries the next nextToken.
+idempotency:
+  supported: false
+  notes: No Idempotency-Key header/parameter is documented; write operations are not advertised as idempotent.
+request_tracing:
+  request_id_header: null
+  notes: No request-id/trace header documented in the OpenAPI.
+rate_limiting:
+  signaled: false
+  notes: No RateLimit-* headers or rate-limit policy documented.
+error_envelope:
+  format: custom-json
+  fields: [defined, code, status, message, data]
+  ref: errors/alpic-problem-types.yml
+log_streaming:
+  style: pull
+  operations: [environments.getLogs.v1, environments.getLatestLogs.v1]
+  notes: Runtime/build logs are retrieved via polling endpoints (and the CLI `alpic logs` stream); no webhooks/AsyncAPI.

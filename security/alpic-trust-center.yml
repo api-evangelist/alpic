@@ -1,0 +1,15 @@
+generated: '2026-07-17'
+method: searched
+probe: false
+url: https://trust.alpic.ai/
+source: https://alpic.ai/legal
+certifications: []
+notes: >-
+  Alpic operates a hosted Trust Center at https://trust.alpic.ai/ (linked from the site's
+  legal page). The page is a client-rendered SPA, so specific named certifications
+  (SOC 2 / ISO 27001 / etc.) could not be confirmed from the raw HTML and no public source
+  names them; certifications left empty rather than asserted. Compliance pointer intentionally
+  NOT emitted (no verified published certification program).
+evidence:
+  - {source: https://alpic.ai/legal, kind: trust-center-link}
+  - {source: https://trust.alpic.ai/, kind: trust-center, keywords: [trust center]}

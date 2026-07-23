@@ -1,0 +1,15 @@
+generated: '2026-07-17'
+method: generated
+skills:
+  - file: alpic-agent-auth.md
+    name: Alpic agentic authentication (auth.md)
+    method: searched
+    source: https://alpic.ai/auth.md
+    api: openapi/alpic-openapi-original.json
+    operations: []
+    description: Provider-published skill — how an AI agent self-registers for an Alpic API key via identity assertion (ID-JAG), verbatim.
+  - file: alpic-deploy-mcp-server.md
+    name: Deploy and manage an MCP server on Alpic
+    method: generated
+    api: openapi/alpic-openapi-original.json
+    operations: [teams.list.v1, projects.create.v1, environments.create.v1, environmentVariables.create.v1, environments.deploy.v1, environments.getLatestLogs.v1, beacon.create.v1, distribution.publish.v1]

@@ -1,0 +1,56 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.alpic.ai/cli/overview
+name: alpic
+binary: alpic
+package: packages/alpic-packages.yml
+install:
+  - method: npm
+    command: npm install -g alpic
+docs: https://docs.alpic.ai/cli/overview
+auth:
+  - login: Browser-based OAuth (`alpic login`); `alpic logout` removes stored credentials; `alpic whoami` shows identity.
+command_groups:
+  - group: deploy
+    description: Deploy the current project to Alpic.
+    commands: [deploy]
+  - group: link
+    description: Link the current directory to an Alpic project.
+    commands: [link]
+  - group: project
+    description: Manage projects.
+  - group: environment
+    description: Manage environments.
+    commands: [environment inspect, environment list]
+  - group: environment-variable
+    description: Manage environment variables.
+    commands: [environment-variable add, environment-variable list, environment-variable remove, environment-variable update]
+  - group: deployment
+    description: Inspect and list deployments and their logs.
+    commands: [deployment inspect, deployment list, deployment logs]
+  - group: logs
+    description: Stream runtime logs for an environment.
+    commands: [logs]
+  - group: git
+    description: Connect/disconnect a linked project to a git remote.
+    commands: [git connect, git disconnect]
+  - group: playground
+    description: Configure the environment playground/inspector.
+    commands: [playground enable, playground disable, playground configure, playground status, playground example-prompt add]
+  - group: audit
+    description: Run a Beacon audit on an MCP server.
+    commands: [audit]
+  - group: publish
+    description: Publish a server to the MCP registry.
+  - group: tunnel
+    description: Expose a local MCP server to the internet.
+  - group: telemetry
+    description: Manage anonymous CLI usage reporting.
+    commands: [telemetry status]
+key_flows:
+  - name: Deploy an MCP server
+    steps: [alpic login, alpic link, alpic deploy]
+  - name: Audit MCP server compliance
+    steps: [alpic audit]
+  - name: Local development tunnel
+    steps: [alpic tunnel]

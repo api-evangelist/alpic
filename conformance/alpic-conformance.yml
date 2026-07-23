@@ -1,0 +1,34 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/alpic-openapi-original.json
+standards:
+  - id: openapi-3.1
+    conforms: true
+    evidence: Provider publishes an OpenAPI 3.1.1 document at https://api.alpic.ai/openapi.json
+  - id: oauth2-bearer
+    conforms: true
+    evidence: securityScheme bearerAuth (http/bearer); accepts API keys or OAuth access tokens
+  - id: rfc9728-oauth-protected-resource
+    conforms: true
+    evidence: /.well-known/oauth-protected-resource returns 200 with resource + authorization_servers
+  - id: rfc8414-oauth-authorization-server
+    conforms: true
+    evidence: /.well-known/oauth-authorization-server returns 200
+  - id: oidc
+    conforms: true
+    evidence: protected-resource scopes_supported include openid/email/profile; Amazon Cognito user pool listed as an authorization server
+  - id: model-context-protocol
+    conforms: true
+    evidence: Platform hosts and audits MCP servers; distribution.publish targets the MCP registry; Beacon audits MCP spec compliance
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a custom JSON envelope (defined/code/status/message/data), not application/problem+json
+  - id: cursor-pagination
+    conforms: true
+    evidence: List/log operations use nextToken + limit query parameters (opaque cursor)
+  - id: idempotency-keys
+    conforms: false
+    evidence: No Idempotency-Key header or parameter documented in the OpenAPI
+  - id: asyncapi
+    conforms: false
+    evidence: No AsyncAPI document or webhook catalog published; log streaming is pull-based

@@ -1,0 +1,383 @@
+openapi: 3.1.1
+info:
+  title: Alpic analytics distribution API
+  version: 1.0.0
+servers:
+- url: https://api.alpic.ai
+security:
+- bearerAuth: []
+tags:
+- name: distribution
+paths:
+  /v1/distribution/publish:
+    post:
+      operationId: distribution.publish.v1
+      summary: Publish a server to the MCP registry
+      tags:
+      - distribution
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                projectId:
+                  type: string
+                domain:
+                  type: string
+                title:
+                  type: string
+                  minLength: 1
+                  maxLength: 100
+                description:
+                  type: string
+                  minLength: 1
+                  maxLength: 100
+                websiteUrl:
+                  type: string
+                  maxLength: 255
+                  format: uri
+                iconSrc:
+                  type: string
+                  maxLength: 255
+                  format: uri
+                dryRun:
+                  type: boolean
+              required:
+              - projectId
+              - domain
+              - title
+              - description
+      responses:
+        '200':
+          description: The server has been published successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  serverFields:
+                    type: object
+                    properties:
+                      $schema:
+                        type: string
+                      name:
+                        type: string
+                      description:
+                        type: string
+                      version:
+                        type: string
+                      title:
+                        type: string
+                      websiteUrl:
+                        type: string
+                        format: uri
+                      icons:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            src:
+                              type: string
+                              format: uri
+                            mimeType:
+                              type: string
+                            sizes:
+                              type: array
+                              items:
+                                type: string
+                          required:
+                          - src
+                      remotes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                            url:
+                              type: string
+                              format: uri
+                            headers:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  description:
+                                    type: string
+                                  isRequired:
+                                    type: boolean
+                                  isSecret:
+                                    type: boolean
+                                required:
+                                - name
+                                - description
+                          required:
+                          - type
+                    required:
+                    - $schema
+                    - name
+                    - description
+                required:
+                - serverFields
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+  /v1/distribution/get:
+    get:
+      operationId: distribution.get.v1
+      summary: Get server info
+      description: Get info about a server
+      tags:
+      - distribution
+      parameters:
+      - name: projectId
+        in: query
+        required: true
+        schema:
+          type: string
+        allowEmptyValue: true
+        allowReserved: true
+      - name: domain
+        in: query
+        required: true
+        schema:
+          type: string
+        allowEmptyValue: true
+        allowReserved: true
+      responses:
+        '200':
+          description: The server info
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  serverFields:
+                    type: object
+                    properties:
+                      $schema:
+                        type: string
+                      name:
+                        type: string
+                      description:
+                        type: string
+                      version:
+                        type: string
+                      title:
+                        type: string
+                      websiteUrl:
+                        type: string
+                        format: uri
+                      icons:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            src:
+                              type: string
+                              format: uri
+                            mimeType:
+                              type: string
+                            sizes:
+                              type: array
+                              items:
+                                type: string
+                          required:
+                          - src
+                      remotes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                            url:
+                              type: string
+                              format: uri
+                            headers:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  name:
+                                    type: string
+                                  description:
+                                    type: string
+                                  isRequired:
+                                    type: boolean
+                                  isSecret:
+                                    type: boolean
+                                required:
+                                - name
+                                - description
+                          required:
+                          - type
+                    required:
+                    - $schema
+                    - name
+                    - description
+                required:
+                - serverFields
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: Bearer token for authentication. Use an API key from the API Keys page in team settings, or an OAuth access token.
+      scheme: bearer

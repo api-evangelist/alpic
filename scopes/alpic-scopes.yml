@@ -1,0 +1,25 @@
+generated: '2026-07-17'
+method: searched
+source: https://api.alpic.ai/.well-known/oauth-protected-resource
+docs: https://docs.alpic.ai/api-reference
+notes: >-
+  The Alpic OpenAPI declares a single http/bearer scheme (API key or OAuth access token) and
+  no oauth2 flow with an authorization-scope map, so there is no API-authorization scope surface
+  to derive from the spec. The scopes below are the OIDC login scopes advertised on the
+  protected-resource metadata (used for user authentication via the Amazon Cognito authorization
+  server), not per-endpoint API permissions. Access to the REST API is all-or-nothing per token.
+schemes:
+  - name: bearerAuth
+    source: openapi/alpic-openapi-original.json
+    type: http
+    scheme: bearer
+scopes:
+  - scope: openid
+    description: OIDC — issue an ID token for the authenticated user.
+    source: well-known/alpic-oauth-protected-resource.json
+  - scope: email
+    description: OIDC — include the user's email in the ID token.
+    source: well-known/alpic-oauth-protected-resource.json
+  - scope: profile
+    description: OIDC — include the user's profile claims in the ID token.
+    source: well-known/alpic-oauth-protected-resource.json

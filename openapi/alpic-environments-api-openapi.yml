@@ -1,0 +1,1580 @@
+openapi: 3.1.1
+info:
+  title: Alpic analytics environments API
+  version: 1.0.0
+servers:
+- url: https://api.alpic.ai
+security:
+- bearerAuth: []
+tags:
+- name: environments
+paths:
+  /v1/environments:
+    post:
+      operationId: environments.create.v1
+      summary: Create an environment
+      description: Create an environment for a project
+      tags:
+      - environments
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                projectId:
+                  type: string
+                  description: The ID of the project to create the environment for
+                name:
+                  type: string
+                  minLength: 1
+                  description: The name of the environment
+                sourceBranch:
+                  type: string
+                  minLength: 1
+                  description: The branch used to build the environment
+                environmentVariables:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        minLength: 2
+                        pattern: ^[a-zA-Z]([a-zA-Z0-9_])+$
+                      value:
+                        type: string
+                        minLength: 1
+                      isSecret:
+                        type: boolean
+                        default: false
+                    required:
+                    - key
+                    - value
+                  default: []
+              required:
+              - projectId
+              - name
+              - sourceBranch
+      responses:
+        '200':
+          description: The environment has been created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  sourceBranch:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                    description: The branch used to build the environment
+                  urls:
+                    type: array
+                    items:
+                      type: string
+                      format: uri
+                    description: The URLs of the MCP server
+                  createdAt:
+                    type: string
+                    format: date-time
+                    x-native-type: date
+                  projectId:
+                    type: string
+                    description: The ID of the project the environment belongs to
+                required:
+                - id
+                - name
+                - sourceBranch
+                - urls
+                - createdAt
+                - projectId
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+  /v1/environments/{environmentId}:
+    get:
+      operationId: environments.get.v1
+      summary: Get an environment
+      description: Get an environment by ID
+      tags:
+      - environments
+      parameters:
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the environment
+      responses:
+        '200':
+          description: The environment details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  sourceBranch:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                  mcpServerUrl:
+                    type: string
+                  domains:
+                    type: array
+                    items:
+                      type: string
+                      format: hostname
+                  createdAt:
+                    type: string
+                    format: date-time
+                    x-native-type: date
+                  projectId:
+                    type: string
+                required:
+                - id
+                - name
+                - sourceBranch
+                - mcpServerUrl
+                - domains
+                - createdAt
+                - projectId
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+  /v1/environments/{environmentId}/deploy:
+    post:
+      operationId: environments.deploy.v1
+      summary: Deploy an environment
+      description: Deploy an environment
+      tags:
+      - environments
+      parameters:
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the environment to deploy
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                token:
+                  type: string
+                  description: The token to identify the source archive
+                settings:
+                  type: object
+                  properties:
+                    installCommand:
+                      type: string
+                    buildCommand:
+                      type: string
+                    buildOutputDir:
+                      type: string
+                    startCommand:
+                      type: string
+                    transport:
+                      enum:
+                      - stdio
+                      - sse
+                      - streamablehttp
+                      type: string
+                  required:
+                  - transport
+                  description: Project settings detected by the client from the source. When provided, the server skips downloading and extracting the source archive to detect them.
+      responses:
+        '200':
+          description: The environment has been deployed successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  status:
+                    enum:
+                    - ongoing
+                    - deployed
+                    - failed
+                    - canceled
+                    type: string
+                  sourceRef:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                  sourceCommitId:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                  sourceCommitMessage:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                  authorUsername:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                  authorAvatarUrl:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                  startedAt:
+                    anyOf:
+                    - type: string
+                      format: date-time
+                      x-native-type: date
+                    - type: 'null'
+                  completedAt:
+                    anyOf:
+                    - type: string
+                      format: date-time
+                      x-native-type: date
+                    - type: 'null'
+                  environmentId:
+                    type: string
+                  environmentName:
+                    type: string
+                  isCurrent:
+                    type: boolean
+                  deploymentPageUrl:
+                    anyOf:
+                    - type: string
+                      format: uri
+                    - type: 'null'
+                required:
+                - id
+                - status
+                - sourceRef
+                - sourceCommitId
+                - sourceCommitMessage
+                - authorUsername
+                - authorAvatarUrl
+                - startedAt
+                - completedAt
+                - environmentId
+                - environmentName
+                - isCurrent
+                - deploymentPageUrl
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+  /v1/environments/{environmentId}/logs:
+    get:
+      operationId: environments.getLogs.v1
+      summary: Get logs
+      description: Get logs for an environment
+      tags:
+      - environments
+      parameters:
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the environment
+      - name: since
+        in: query
+        schema:
+          type: string
+          description: Start time — ISO 8601 (2024-01-01T00:00:00Z) or relative (1h, 30m, 2d)
+        allowEmptyValue: true
+        allowReserved: true
+      - name: until
+        in: query
+        schema:
+          type: string
+          description: End time — ISO 8601 or relative
+        allowEmptyValue: true
+        allowReserved: true
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 1000
+          default: 1000
+          description: Maximum number of log entries to return.
+        allowEmptyValue: true
+        allowReserved: true
+      - name: level
+        in: query
+        schema:
+          type: array
+          items:
+            enum:
+            - INFO
+            - ERROR
+            - WARNING
+            - DEBUG
+            type: string
+          description: Filter by log level
+        style: deepObject
+        explode: true
+        allowEmptyValue: true
+        allowReserved: true
+      - name: search
+        in: query
+        schema:
+          type: string
+          description: Filter pattern to search for in log content
+        allowEmptyValue: true
+        allowReserved: true
+      - name: nextToken
+        in: query
+        schema:
+          type: string
+          description: Pagination token from a previous response
+        allowEmptyValue: true
+        allowReserved: true
+      responses:
+        '200':
+          description: The logs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  logs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        timestamp:
+                          type: string
+                          format: date-time
+                          x-native-type: date
+                        type:
+                          enum:
+                          - START
+                          - END
+                          - INFO
+                          - ERROR
+                          - WARNING
+                          - DEBUG
+                          type: string
+                        requestId:
+                          type: string
+                        content:
+                          type: string
+                        method:
+                          type: string
+                        durationInMs:
+                          type: number
+                      required:
+                      - timestamp
+                      - type
+                      - requestId
+                  nextToken:
+                    anyOf:
+                    - type: string
+                    - type: 'null'
+                required:
+                - logs
+                - nextToken
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+  /v1/environments/{environmentId}/latest-logs:
+    get:
+      operationId: environments.getLatestLogs.v1
+      summary: Get latest logs
+      description: Get the N most recent logs for an environment
+      tags:
+      - environments
+      parameters:
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the environment
+      - name: limit
+        in: query
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 1000
+          default: 100
+          description: Number of most recent log entries to return
+        allowEmptyValue: true
+        allowReserved: true
+      - name: level
+        in: query
+        schema:
+          type: array
+          items:
+            enum:
+            - INFO
+            - ERROR
+            - WARNING
+            - DEBUG
+            type: string
+          description: Filter by log level
+        style: deepObject
+        explode: true
+        allowEmptyValue: true
+        allowReserved: true
+      - name: search
+        in: query
+        schema:
+          type: string
+          description: Filter pattern to search for in log content
+        allowEmptyValue: true
+        allowReserved: true
+      responses:
+        '200':
+          description: The latest logs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  logs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        timestamp:
+                          type: string
+                          format: date-time
+                          x-native-type: date
+                        type:
+                          enum:
+                          - START
+                          - END
+                          - INFO
+                          - ERROR
+                          - WARNING
+                          - DEBUG
+                          type: string
+                        requestId:
+                          type: string
+                        content:
+                          type: string
+                        method:
+                          type: string
+                        durationInMs:
+                          type: number
+                      required:
+                      - timestamp
+                      - type
+                      - requestId
+                required:
+                - logs
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+  /v1/environments/{environmentId}/environment-variables:
+    get:
+      operationId: environmentVariables.list.v1
+      summary: List environment variables
+      description: List all environment variables for an environment
+      tags:
+      - environments
+      parameters:
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the environment
+      responses:
+        '200':
+          description: The list of environment variables
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    key:
+                      type: string
+                    value:
+                      type: string
+                    isSecret:
+                      type: boolean
+                    createdAt:
+                      type: string
+                      format: date-time
+                      x-native-type: date
+                  required:
+                  - id
+                  - key
+                  - value
+                  - isSecret
+                  - createdAt
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+    post:
+      operationId: environmentVariables.create.v1
+      summary: Add environment variables
+      description: Add one or more environment variables to an environment
+      tags:
+      - environments
+      parameters:
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the environment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                environmentVariables:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      key:
+                        type: string
+                        minLength: 2
+                        pattern: ^[a-zA-Z]([a-zA-Z0-9_])+$
+                      value:
+                        type: string
+                        minLength: 1
+                      isSecret:
+                        type: boolean
+                        default: false
+                    required:
+                    - key
+                    - value
+              required:
+              - environmentVariables
+      responses:
+        '200':
+          description: The environment variables have been added successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    const: true
+                required:
+                - success
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+  /v1/environment-variables/{environmentVariableId}:
+    patch:
+      operationId: environmentVariables.update.v1
+      summary: Update an environment variable
+      description: Update an environment variable by ID
+      tags:
+      - environments
+      parameters:
+      - name: environmentVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the environment variable
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                key:
+                  type: string
+                  minLength: 2
+                  pattern: ^[a-zA-Z]([a-zA-Z0-9_])+$
+                value:
+                  type: string
+                  minLength: 1
+                isSecret:
+                  type: boolean
+                  default: false
+              required:
+              - key
+      responses:
+        '200':
+          description: The environment variable has been updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    const: true
+                required:
+                - success
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+    delete:
+      operationId: environmentVariables.delete.v1
+      summary: Delete an environment variable
+      description: Delete an environment variable by ID
+      tags:
+      - environments
+      parameters:
+      - name: environmentVariableId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the environment variable
+      responses:
+        '200':
+          description: The environment variable has been deleted successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    const: true
+                required:
+                - success
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+  /v1/environments/{environmentId}/playground:
+    get:
+      operationId: playground.get.v1
+      summary: Get playground configuration
+      description: Get the playground configuration for an environment
+      tags:
+      - environments
+      parameters:
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the environment
+      responses:
+        '200':
+          description: The playground configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isPlaygroundEnabled:
+                    type: boolean
+                  serverMetadata:
+                    anyOf:
+                    - type: object
+                      properties:
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        headers:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              description:
+                                type: string
+                              isRequired:
+                                type: boolean
+                              isSecret:
+                                type: boolean
+                            required:
+                            - name
+                            - description
+                            - isRequired
+                            - isSecret
+                        examplePrompts:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              title:
+                                type: string
+                                minLength: 1
+                                maxLength: 100
+                              prompt:
+                                type: string
+                                minLength: 1
+                                maxLength: 500
+                            required:
+                            - title
+                            - prompt
+                      required:
+                      - name
+                      - description
+                      - headers
+                      - examplePrompts
+                    - type: 'null'
+                required:
+                - isPlaygroundEnabled
+                - serverMetadata
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+    put:
+      operationId: playground.upsert.v1
+      summary: Update playground configuration
+      description: Update the playground configuration for an environment. All fields are optional — only provided fields are updated.
+      tags:
+      - environments
+      parameters:
+      - name: environmentId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the environment
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                isPlaygroundEnabled:
+                  type: boolean
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 100
+                description:
+                  type: string
+                  minLength: 1
+                  maxLength: 500
+                headers:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        minLength: 1
+                        maxLength: 100
+                      description:
+                        type: string
+                        maxLength: 200
+                      isRequired:
+                        type: boolean
+                        default: false
+                      isSecret:
+                        type: boolean
+                        default: false
+                    required:
+                    - name
+                    - description
+                examplePrompts:
+                  type: array
+                  maxItems: 5
+                  items:
+                    type: object
+                    properties:
+                      title:
+                        type: string
+                        minLength: 1
+                        maxLength: 100
+                      prompt:
+                        type: string
+                        minLength: 1
+                        maxLength: 500
+                    required:
+                    - title
+                    - prompt
+      responses:
+        '200':
+          description: The updated playground configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  isPlaygroundEnabled:
+                    type: boolean
+                  serverMetadata:
+                    anyOf:
+                    - type: object
+                      properties:
+                        name:
+                          type: string
+                        description:
+                          type: string
+                        headers:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              name:
+                                type: string
+                              description:
+                                type: string
+                              isRequired:
+                                type: boolean
+                              isSecret:
+                                type: boolean
+                            required:
+                            - name
+                            - description
+                            - isRequired
+                            - isSecret
+                        examplePrompts:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              title:
+                                type: string
+                                minLength: 1
+                                maxLength: 100
+                              prompt:
+                                type: string
+                                minLength: 1
+                                maxLength: 500
+                            required:
+                            - title
+                            - prompt
+                      required:
+                      - name
+                      - description
+                      - headers
+                      - examplePrompts
+                    - type: 'null'
+                required:
+                - isPlaygroundEnabled
+                - serverMetadata
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: Bearer token for authentication. Use an API key from the API Keys page in team settings, or an OAuth access token.
+      scheme: bearer

@@ -1,0 +1,104 @@
+# Alpic Documentation
+
+## Docs
+
+- [Metric definitions](https://docs.alpic.ai/analytics/metrics.md): Exactly what each analytics metric measures.
+- [Overview](https://docs.alpic.ai/analytics/overview.md): Understand how your MCP server is used, out of the box.
+- [Privacy & Data Collection](https://docs.alpic.ai/analytics/privacy.md): Control what data Alpic collects about your MCP server's traffic.
+- [How users are counted](https://docs.alpic.ai/analytics/unique-users.md): Exactly how Alpic identifies unique users of your MCP server.
+- [Using the REST API](https://docs.alpic.ai/api-reference.md): Learn how to use Alpic's REST API to programmatically manage your MCP servers, teams, and projects
+- [Get project analytics](https://docs.alpic.ai/api-reference/analytics/get-project-analytics.md): Get analytics data for a project over a time range
+- [Create a beacon audit](https://docs.alpic.ai/api-reference/beacon/create-a-beacon-audit.md): Audit an MCP server for spec compliance and AI client compatibility
+- [Get a beacon audit](https://docs.alpic.ai/api-reference/beacon/get-a-beacon-audit.md): Get a beacon audit by ID, including the report if completed
+- [Get a deployment](https://docs.alpic.ai/api-reference/deployments/get-a-deployment.md): Get a deployment by ID
+- [Get server info](https://docs.alpic.ai/api-reference/distribution/get-server-info.md): Get info about a server
+- [Publish a server to the MCP registry](https://docs.alpic.ai/api-reference/distribution/publish-a-server-to-the-mcp-registry.md)
+- [Add environment variables](https://docs.alpic.ai/api-reference/environments/add-environment-variables.md): Add one or more environment variables to an environment
+- [Create an environment](https://docs.alpic.ai/api-reference/environments/create-an-environment.md): Create an environment for a project
+- [Delete an environment variable](https://docs.alpic.ai/api-reference/environments/delete-an-environment-variable.md): Delete an environment variable by ID
+- [Deploy an environment](https://docs.alpic.ai/api-reference/environments/deploy-an-environment.md): Deploy an environment
+- [Get an environment](https://docs.alpic.ai/api-reference/environments/get-an-environment.md): Get an environment by ID
+- [Get latest logs](https://docs.alpic.ai/api-reference/environments/get-latest-logs.md): Get the N most recent logs for an environment
+- [Get logs](https://docs.alpic.ai/api-reference/environments/get-logs.md): Get logs for an environment
+- [Get playground configuration](https://docs.alpic.ai/api-reference/environments/get-playground-configuration.md): Get the playground configuration for an environment
+- [List environment variables](https://docs.alpic.ai/api-reference/environments/list-environment-variables.md): List all environment variables for an environment
+- [Update an environment variable](https://docs.alpic.ai/api-reference/environments/update-an-environment-variable.md): Update an environment variable by ID
+- [Update playground configuration](https://docs.alpic.ai/api-reference/environments/update-playground-configuration.md): Update the playground configuration for an environment. All fields are optional — only provided fields are updated.
+- [Create a project](https://docs.alpic.ai/api-reference/projects/create-a-project.md): Create a project for a team
+- [Delete a project](https://docs.alpic.ai/api-reference/projects/delete-a-project.md): Delete a project and all its environments
+- [Get a project](https://docs.alpic.ai/api-reference/projects/get-a-project.md): Get a project by ID
+- [List projects](https://docs.alpic.ai/api-reference/projects/list-projects.md): List all projects for a team
+- [Update a project](https://docs.alpic.ai/api-reference/projects/update-a-project.md): Update project settings
+- [List teams](https://docs.alpic.ai/api-reference/teams/list-teams.md): List all teams for the authenticated user
+- [Get a tunnel ticket](https://docs.alpic.ai/api-reference/tunnels/get-a-tunnel-ticket.md): Get a signed ticket for establishing a tunnel connection. Requires user authentication (API keys are not supported).
+- [Hosting Assets](https://docs.alpic.ai/build-deploy/assets.md): Learn how to host complete ChatGPT Apps on Alpic
+- [Builds](https://docs.alpic.ai/build-deploy/builds.md): Learn how Alpic builds and configures your MCP server during deployment
+- [Alpic Endpoints](https://docs.alpic.ai/build-deploy/endpoints.md): Learn about the endpoints and assets exposed by Alpic
+- [Environment Variables](https://docs.alpic.ai/build-deploy/env-variables.md): System-provided environment variables available in your MCP server deployments
+- [Environments](https://docs.alpic.ai/build-deploy/environments.md): How to manage your deployment environments
+- [audit](https://docs.alpic.ai/cli/audit.md): Run a Beacon audit on an MCP server
+- [deploy](https://docs.alpic.ai/cli/deploy.md): Deploy a project to Alpic
+- [deployment inspect](https://docs.alpic.ai/cli/deployment-inspect.md): Show details of a deployment
+- [deployment list](https://docs.alpic.ai/cli/deployment-list.md): List deployments for the current project
+- [deployment logs](https://docs.alpic.ai/cli/deployment-logs.md): Retrieve build logs for a deployment
+- [environment inspect](https://docs.alpic.ai/cli/environment-inspect.md): Show details of an environment
+- [environment list](https://docs.alpic.ai/cli/environment-list.md): List environments for a project
+- [environment-variable add](https://docs.alpic.ai/cli/environment-variable-add.md): Add one or more environment variables to an Alpic environment
+- [environment-variable list](https://docs.alpic.ai/cli/environment-variable-list.md): List all environment variables for an Alpic environment
+- [environment-variable remove](https://docs.alpic.ai/cli/environment-variable-remove.md): Remove an environment variable from an Alpic environment
+- [environment-variable update](https://docs.alpic.ai/cli/environment-variable-update.md): Update the value and/or secret status of an environment variable
+- [git connect](https://docs.alpic.ai/cli/git-connect.md): Connect a linked Alpic project to a git remote source
+- [git disconnect](https://docs.alpic.ai/cli/git-disconnect.md): Disconnect a linked Alpic project from its git remote source
+- [link](https://docs.alpic.ai/cli/link.md): Link the current directory to an Alpic project
+- [login](https://docs.alpic.ai/cli/login.md): Log in to Alpic using browser-based OAuth authentication
+- [logout](https://docs.alpic.ai/cli/logout.md): Log out from Alpic and remove stored OAuth credentials
+- [logs](https://docs.alpic.ai/cli/logs.md): Stream runtime logs for an Alpic environment
+- [Alpic CLI](https://docs.alpic.ai/cli/overview.md): Deploy and manage your MCP servers from the command line
+- [playground configure](https://docs.alpic.ai/cli/playground-configure.md): Set the playground server name and description
+- [playground disable](https://docs.alpic.ai/cli/playground-disable.md): Disable the playground for an environment
+- [playground enable](https://docs.alpic.ai/cli/playground-enable.md): Enable the playground for an environment
+- [playground example-prompt add](https://docs.alpic.ai/cli/playground-example-prompt-add.md): Add an example prompt to the playground
+- [playground example-prompt list](https://docs.alpic.ai/cli/playground-example-prompt-list.md): List playground example prompts for an environment
+- [playground example-prompt remove](https://docs.alpic.ai/cli/playground-example-prompt-remove.md): Remove an example prompt from the playground
+- [playground headers add](https://docs.alpic.ai/cli/playground-headers-add.md): Add a header to the playground configuration
+- [playground headers list](https://docs.alpic.ai/cli/playground-headers-list.md): List playground headers for an environment
+- [playground headers remove](https://docs.alpic.ai/cli/playground-headers-remove.md): Remove a playground header
+- [playground status](https://docs.alpic.ai/cli/playground-status.md): Show playground configuration for an environment
+- [project inspect](https://docs.alpic.ai/cli/project-inspect.md): Show details of a project and its environments
+- [project list](https://docs.alpic.ai/cli/project-list.md): List projects
+- [publish](https://docs.alpic.ai/cli/publish.md): Publish your MCP server to the MCP registry
+- [team inspect](https://docs.alpic.ai/cli/team-inspect.md): Show details of a team and its projects
+- [team list](https://docs.alpic.ai/cli/team-list.md): List teams for the current user
+- [telemetry disable](https://docs.alpic.ai/cli/telemetry-disable.md): Disable anonymous CLI telemetry on this machine
+- [telemetry enable](https://docs.alpic.ai/cli/telemetry-enable.md): Enable anonymous CLI telemetry on this machine
+- [telemetry status](https://docs.alpic.ai/cli/telemetry-status.md): Show anonymous CLI telemetry settings for this machine
+- [tunnel](https://docs.alpic.ai/cli/tunnel.md): Expose a local server to the internet through an Alpic tunnel
+- [whoami](https://docs.alpic.ai/cli/whoami.md): Show the current Alpic identity
+- [API](https://docs.alpic.ai/developer-tools/api.md): Alpic REST API
+- [CLI](https://docs.alpic.ai/developer-tools/cli.md): Alpic command-line interface
+- [Alpic MCP Server](https://docs.alpic.ai/developer-tools/mcp.md): Manage your projects, debug deployment, and check analytics for any MCP server you host with Alpic
+- [Domains](https://docs.alpic.ai/distribution/domains.md): Connect your MCP server to your domain
+- [Playground](https://docs.alpic.ai/distribution/playground.md): Let users try your MCP server directly from their browser with an AI-powered playground.
+- [Publishing](https://docs.alpic.ai/distribution/publishing.md): How to distribute your MCP server to the world
+- [Registry](https://docs.alpic.ai/distribution/registry.md): Publish your MCP server to the official MCP Registry
+- [Updating a published app](https://docs.alpic.ai/distribution/versioning.md): Safely roll out changes to your workloads on ChatGPT and Claude.ai
+- [Deploy on Alpic Button](https://docs.alpic.ai/guides/work-with-deploy-button.md): How to distribute your MCP server template Github repository to Alpic users
+- [Welcome to Alpic!](https://docs.alpic.ai/index.md): Alpic is an all-in-one MCP cloud platform where you can spin up servers, track them with AI-specific analytics, monitor everything, and ship to users without breaking a sweat.
+- [Plans](https://docs.alpic.ai/pricing/plans.md): Alpic pricing plans and what's included
+- [Quickstart](https://docs.alpic.ai/quickstart.md): Deploy your first MCP server on Alpic in minutes!
+- [Dynamic Client Registration Proxy](https://docs.alpic.ai/secure/auth/dcr-proxy.md): Understand how Alpic's in-house DCR proxy works and when you should use it
+- [OAuth Providers](https://docs.alpic.ai/secure/auth/oauth-providers.md): List of popular Identity Providers (IdP) and their corresponding configuration endpoints.
+- [OAuth authentication](https://docs.alpic.ai/secure/auth/oauth-setup.md): Configure OAuth authentication for your MCP servers on Alpic
+- [Overview](https://docs.alpic.ai/secure/auth/overview.md): Secure your MCP servers with flexible authentication options on Alpic
+- [API Key authentication](https://docs.alpic.ai/secure/auth/token-bearer-setup.md): Protect your MCP server with API Keys
+- [Fixed Outbound IP](https://docs.alpic.ai/secure/fixed-outbound-ip.md): Route your MCP server's outbound traffic through fixed IP addresses
+- [IP Whitelisting](https://docs.alpic.ai/secure/ip-whitelisting.md): Restrict access to your MCP server by IP address or MCP client
+- [Beacon](https://docs.alpic.ai/testing/beacon.md): Audit your MCP server and MCP Apps for spec compliance and AI client compatibility.
+- [Playground](https://docs.alpic.ai/testing/playground.md): How to access and test your MCP Server
+- [Troubleshooting](https://docs.alpic.ai/troubleshooting.md): Common deployment issues and how to fix them
+- [User Feedbacks](https://docs.alpic.ai/user-insights/user-feedbacks.md): Collect feedback from your users or the LLM directly inside your MCP server.
+- [User Intents](https://docs.alpic.ai/user-insights/user-intents.md): Understand what your users really want from your MCP server.
+
+## OpenAPI Specs
+
+- [openapi](https://api.alpic.ai/openapi.json)

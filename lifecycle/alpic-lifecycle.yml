@@ -1,0 +1,20 @@
+generated: '2026-07-17'
+method: searched
+source: https://docs.alpic.ai/api-reference.md
+versioning:
+  scheme: uri-path
+  current: v1
+  docs: https://docs.alpic.ai/api-reference
+  notes: All endpoints are prefixed with /v1/. operationIds are versioned (e.g. projects.create.v1).
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No published deprecation policy or RFC 8594 Sunset/Deprecation header support found.
+sla:
+  url: null
+  uptime_target: null
+status_page: null
+status_page_notes: >-
+  No first-party status page found. Default (unbranded) Instatus and Statuspage placeholders
+  exist on the alpic subdomains but are not wired to Alpic and are not linked from the docs or site.
+deprecated_operations: []

@@ -1,0 +1,402 @@
+openapi: 3.1.1
+info:
+  title: Alpic analytics beacon API
+  version: 1.0.0
+servers:
+- url: https://api.alpic.ai
+security:
+- bearerAuth: []
+tags:
+- name: beacon
+paths:
+  /v1/beacon/audits:
+    post:
+      operationId: beacon.create.v1
+      summary: Create a beacon audit
+      description: Audit an MCP server for spec compliance and AI client compatibility
+      tags:
+      - beacon
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                targetUrl:
+                  type: string
+                  format: uri
+                  description: The HTTPS URL of the MCP server to audit
+                teamId:
+                  type: string
+                  description: The team ID to associate the audit with
+                projectId:
+                  type: string
+                  description: The project ID to associate the audit with
+                excludeCategories:
+                  type: array
+                  items:
+                    enum:
+                    - connectivity
+                    - tool-metadata
+                    - resource-metadata
+                    - performance
+                    - e2e
+                    type: string
+                  description: Check categories to exclude from the audit
+              required:
+              - targetUrl
+      responses:
+        '200':
+          description: The audit has been created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                required:
+                - id
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: DNS_RESOLUTION_FAILED
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: DNS_RESOLUTION_FAILED
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+  /v1/beacon/audits/{auditId}:
+    get:
+      operationId: beacon.get.v1
+      summary: Get a beacon audit
+      description: Get a beacon audit by ID, including the report if completed
+      tags:
+      - beacon
+      parameters:
+      - name: auditId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the audit
+      responses:
+        '200':
+          description: The audit details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  targetUrl:
+                    type: string
+                  status:
+                    enum:
+                    - pending
+                    - partial
+                    - completed
+                    - failed
+                    type: string
+                  durationMs:
+                    anyOf:
+                    - type: number
+                    - type: 'null'
+                  createdAt:
+                    type: string
+                    format: date-time
+                    x-native-type: date
+                  report:
+                    anyOf:
+                    - type: object
+                      properties:
+                        schemaVersion:
+                          type: string
+                        auditId:
+                          type: string
+                        targetUrl:
+                          type: string
+                        startedAt:
+                          type: string
+                        completedAt:
+                          type: string
+                        durationMs:
+                          type: number
+                        results:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              checkId:
+                                type: string
+                              checkName:
+                                type: string
+                              description:
+                                type: string
+                              status:
+                                enum:
+                                - pass
+                                - fail
+                                - skip
+                                - pending
+                                type: string
+                              message:
+                                type: string
+                              skipReason:
+                                type: string
+                              severity:
+                                enum:
+                                - error
+                                - warning
+                                - info
+                                type: string
+                              category:
+                                enum:
+                                - connectivity
+                                - tool-metadata
+                                - resource-metadata
+                                - performance
+                                - e2e
+                                type: string
+                              scope:
+                                enum:
+                                - server
+                                - view
+                                type: string
+                              platforms:
+                                type: array
+                                items:
+                                  enum:
+                                  - chatgpt
+                                  - claudeai
+                                  type: string
+                                readOnly: true
+                              durationMs:
+                                type: number
+                              details:
+                                type: array
+                                items:
+                                  type: object
+                                  properties:
+                                    label:
+                                      type: string
+                                    value:
+                                      type: string
+                                  required:
+                                  - label
+                              hint:
+                                type: object
+                                properties:
+                                  text:
+                                    type: string
+                                required:
+                                - text
+                            required:
+                            - checkId
+                            - checkName
+                            - description
+                            - status
+                            - message
+                            - severity
+                            - category
+                            - scope
+                            - durationMs
+                        requiresAuth:
+                          type: boolean
+                        hasViewSupport:
+                          type: boolean
+                        viewPlatforms:
+                          type: array
+                          items:
+                            enum:
+                            - chatgpt
+                            - claudeai
+                            type: string
+                          readOnly: true
+                        isReadyForPlatform:
+                          type: object
+                          propertyNames:
+                            enum:
+                            - chatgpt
+                            - claudeai
+                            type: string
+                          additionalProperties:
+                            type: boolean
+                        widgetScreenshotKeys:
+                          type: object
+                          properties:
+                            chatgpt:
+                              type: string
+                            claudeai:
+                              type: string
+                        widgetScreenshots:
+                          type: object
+                          properties:
+                            chatgpt:
+                              type: object
+                              properties:
+                                url:
+                                  type: string
+                              required:
+                              - url
+                            claudeai:
+                              type: object
+                              properties:
+                                url:
+                                  type: string
+                              required:
+                              - url
+                      required:
+                      - schemaVersion
+                      - auditId
+                      - targetUrl
+                      - startedAt
+                      - completedAt
+                      - durationMs
+                      - results
+                      - requiresAuth
+                      - hasViewSupport
+                      - isReadyForPlatform
+                      - widgetScreenshotKeys
+                      - widgetScreenshots
+                    - type: 'null'
+                required:
+                - id
+                - targetUrl
+                - status
+                - durationMs
+                - createdAt
+                - report
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: Bearer token for authentication. Use an API key from the API Keys page in team settings, or an OAuth access token.
+      scheme: bearer

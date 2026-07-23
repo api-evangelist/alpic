@@ -1,0 +1,75 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/alpic-openapi-original.json
+notes: >-
+  Entity graph derived from Alpic REST API path structure and id-reference fields
+  (teamId, projectId, environmentId, deploymentId, environmentVariableId, auditId).
+  The OpenAPI inlines schemas (empty components.schemas), so entities are derived from
+  request/response bodies and path parameters.
+entities:
+  - name: Team
+    key: teamId
+    operations: [teams.list.v1]
+  - name: Project
+    key: projectId
+    description: An MCP server project.
+    operations: [projects.list.v1, projects.create.v1, projects.get.v1, projects.update.v1, projects.delete.v1]
+  - name: Environment
+    key: environmentId
+    description: A deployable environment of a project (fields include name, sourceBranch, urls, createdAt, projectId).
+    operations: [environments.create.v1, environments.get.v1, environments.deploy.v1, environments.getLogs.v1, environments.getLatestLogs.v1]
+  - name: EnvironmentVariable
+    key: environmentVariableId
+    description: A key/value (optionally secret) variable scoped to an environment.
+    operations: [environmentVariables.list.v1, environmentVariables.create.v1, environmentVariables.update.v1, environmentVariables.delete.v1]
+  - name: Deployment
+    key: deploymentId
+    operations: [deployments.get.v1]
+  - name: PlaygroundConfiguration
+    key: environmentId
+    operations: [playground.get.v1, playground.upsert.v1]
+  - name: Analytics
+    key: projectId
+    operations: [analytics.get.v1]
+  - name: BeaconAudit
+    key: auditId
+    description: An MCP-server spec-compliance / AI-client-compatibility audit.
+    operations: [beacon.create.v1, beacon.get.v1]
+  - name: Server
+    description: A server published to the MCP registry (distribution).
+    operations: [distribution.publish.v1, distribution.get.v1]
+  - name: TunnelTicket
+    operations: [tunnels.getTicket.v1]
+relationships:
+  - from: Project
+    to: Team
+    kind: belongs_to
+    via: teamId
+  - from: Environment
+    to: Project
+    kind: belongs_to
+    via: projectId
+  - from: Project
+    to: Environment
+    kind: has_many
+    via: projectId
+  - from: EnvironmentVariable
+    to: Environment
+    kind: belongs_to
+    via: environmentId
+  - from: Environment
+    to: EnvironmentVariable
+    kind: has_many
+    via: environmentId
+  - from: Deployment
+    to: Environment
+    kind: belongs_to
+    via: environmentId
+  - from: PlaygroundConfiguration
+    to: Environment
+    kind: belongs_to
+    via: environmentId
+  - from: Analytics
+    to: Project
+    kind: belongs_to
+    via: projectId

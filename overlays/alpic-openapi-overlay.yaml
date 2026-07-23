@@ -1,0 +1,28 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Alpic API
+  version: 1.0.0
+extends: openapi/alpic-openapi-original.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-enriched: '2026-07-17'
+      x-apievangelist-provider: alpic
+      x-apievangelist-notes: >-
+        Alpic API — REST management plane for the MCP-native cloud platform (teams,
+        projects, environments, deployments, analytics, distribution to the MCP registry,
+        and Beacon audits). Auth is http/bearer (API key or OAuth access token) with an
+        agentic self-registration path (identity assertion / ID-JAG).
+  - target: $.info
+    update:
+      x-error-format: custom-json
+      x-error-envelope-fields: [defined, code, status, message, data]
+  - target: $.info
+    update:
+      x-pagination: { style: cursor, params: [limit, nextToken] }
+  - target: $.info
+    update:
+      x-agentic-auth:
+        register_uri: https://api.alpic.ai/agent/auth
+        skill: https://alpic.ai/auth.md
+        assertion_type: urn:ietf:params:oauth:token-type:id-jag

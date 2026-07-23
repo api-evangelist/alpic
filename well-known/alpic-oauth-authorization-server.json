@@ -1,0 +1,1 @@
+{"issuer":"https://api.alpic.ai/","agent_auth":{"skill":"https://alpic.ai/auth.md","register_uri":"https://api.alpic.ai/agent/auth","identity_types_supported":["identity_assertion"],"identity_assertion":{"assertion_types_supported":["urn:ietf:params:oauth:token-type:id-jag"],"credential_types_supported":["api_key"]}}}
