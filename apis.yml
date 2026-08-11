@@ -226,6 +226,10 @@ apis:
   - type: Conformance
     url: conformance/alpic-conformance.yml
 common:
+- type: MCPServer
+  url: mcp/alpic-mcp.yml
+- type: Overlay
+  url: overlays/alpic-openapi-overlay.yaml
 - type: DeveloperPortal
   url: https://docs.alpic.ai
 - type: Documentation
