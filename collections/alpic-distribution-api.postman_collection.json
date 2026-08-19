@@ -1,0 +1,459 @@
+{
+  "item": [
+    {
+      "id": "b5bb5b2f-ea41-4a76-a7ea-7d2c4d1468b0",
+      "name": "distribution",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b664b38f-a8a7-4086-ba8c-fe7816ffa1e9",
+          "name": "Publish a server to the MCP registry",
+          "request": {
+            "name": "Publish a server to the MCP registry",
+            "description": {},
+            "url": {
+              "path": [
+                "v1",
+                "distribution",
+                "publish"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"projectId\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"websiteUrl\": \"<uri>\",\n  \"iconSrc\": \"<uri>\",\n  \"dryRun\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c7257139-a75f-4ad7-949e-499da9cbb08b",
+              "name": "The server has been published successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "distribution",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"websiteUrl\": \"<uri>\",\n  \"iconSrc\": \"<uri>\",\n  \"dryRun\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"serverFields\": {\n    \"$schema\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"version\": \"string\",\n    \"title\": \"string\",\n    \"websiteUrl\": \"https://ca.lmgoLKc6oPuCgczBsWmRqretD,1Nm\",\n    \"icons\": [\n      {\n        \"src\": \"https://tbJUbWEUASZiuxCNwXOJrQOkFM.iawmiJi-5F0nLMfLqHGN0oLp7vlR+EWuqrnxHB21jPiIfZKKKLVDWF\",\n        \"mimeType\": \"string\",\n        \"sizes\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"src\": \"https://Jhz.xneAdylPMjCPVQo,f5CI-vLlNpKOM4ECQhTpnNeT0nK2nma4L21dD5XeT02SVhLyAeEcu+JBC0l\",\n        \"mimeType\": \"string\",\n        \"sizes\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"remotes\": [\n      {\n        \"type\": \"string\",\n        \"url\": \"https://kONOuVhW.vckqPZDv2QEigNxpj8KP\",\n        \"headers\": [\n          {\n            \"name\": \"string\",\n            \"description\": \"string\",\n            \"isRequired\": true,\n            \"isSecret\": false\n          },\n          {\n            \"name\": \"string\",\n            \"description\": \"string\",\n            \"isRequired\": true,\n            \"isSecret\": false\n          }\n        ]\n      },\n      {\n        \"type\": \"string\",\n        \"url\": \"https://NI.mjgeoXwy+EaB3Fx9hTp94Q,vFJdLBQU2k,Yb\",\n        \"headers\": [\n          {\n            \"name\": \"string\",\n            \"description\": \"string\",\n            \"isRequired\": false,\n            \"isSecret\": true\n          },\n          {\n            \"name\": \"string\",\n            \"description\": \"string\",\n            \"isRequired\": false,\n            \"isSecret\": true\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "258dfedf-36cb-427b-91ff-98a286bf0222",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "distribution",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"websiteUrl\": \"<uri>\",\n  \"iconSrc\": \"<uri>\",\n  \"dryRun\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Bad Request\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a66eacf-2e0f-4b55-9a3f-3d6f742e4c66",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "distribution",
+                    "publish"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"projectId\": \"<string>\",\n  \"domain\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"websiteUrl\": \"<uri>\",\n  \"iconSrc\": \"<uri>\",\n  \"dryRun\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Not Found\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "272c7687-5805-4dd3-b6b4-9753591f75b4",
+          "name": "Get server info",
+          "request": {
+            "name": "Get server info",
+            "description": {
+              "content": "Get info about a server",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "distribution",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "projectId",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "domain",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2c5fe304-3db1-41c0-a10d-5a922c873cce",
+              "name": "The server info",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "distribution",
+                    "get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"serverFields\": {\n    \"$schema\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"version\": \"string\",\n    \"title\": \"string\",\n    \"websiteUrl\": \"https://ca.lmgoLKc6oPuCgczBsWmRqretD,1Nm\",\n    \"icons\": [\n      {\n        \"src\": \"https://tbJUbWEUASZiuxCNwXOJrQOkFM.iawmiJi-5F0nLMfLqHGN0oLp7vlR+EWuqrnxHB21jPiIfZKKKLVDWF\",\n        \"mimeType\": \"string\",\n        \"sizes\": [\n          \"string\",\n          \"string\"\n        ]\n      },\n      {\n        \"src\": \"https://Jhz.xneAdylPMjCPVQo,f5CI-vLlNpKOM4ECQhTpnNeT0nK2nma4L21dD5XeT02SVhLyAeEcu+JBC0l\",\n        \"mimeType\": \"string\",\n        \"sizes\": [\n          \"string\",\n          \"string\"\n        ]\n      }\n    ],\n    \"remotes\": [\n      {\n        \"type\": \"string\",\n        \"url\": \"https://kONOuVhW.vckqPZDv2QEigNxpj8KP\",\n        \"headers\": [\n          {\n            \"name\": \"string\",\n            \"description\": \"string\",\n            \"isRequired\": true,\n            \"isSecret\": false\n          },\n          {\n            \"name\": \"string\",\n            \"description\": \"string\",\n            \"isRequired\": true,\n            \"isSecret\": false\n          }\n        ]\n      },\n      {\n        \"type\": \"string\",\n        \"url\": \"https://NI.mjgeoXwy+EaB3Fx9hTp94Q,vFJdLBQU2k,Yb\",\n        \"headers\": [\n          {\n            \"name\": \"string\",\n            \"description\": \"string\",\n            \"isRequired\": false,\n            \"isSecret\": true\n          },\n          {\n            \"name\": \"string\",\n            \"description\": \"string\",\n            \"isRequired\": false,\n            \"isSecret\": true\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ccea7f0-9f2e-48c0-ba20-09c963772d5a",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "distribution",
+                    "get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Bad Request\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70432d41-7a26-4069-b839-87bb4a1827a1",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "distribution",
+                    "get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "projectId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "domain",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Not Found\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.alpic.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "69b01807-4425-4819-87e2-29bc7ada56a3",
+    "name": "Alpic analytics distribution API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

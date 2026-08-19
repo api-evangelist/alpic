@@ -1,0 +1,1091 @@
+{
+  "item": [
+    {
+      "id": "89023cf8-e5bf-4df6-8864-a560c9d76350",
+      "name": "projects",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ac9f0997-a25c-4311-a8e0-beb36f579b23",
+          "name": "Update a project",
+          "request": {
+            "name": "Update a project",
+            "description": {
+              "content": "Update project settings",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"sourceRepository\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3aa790dd-605e-46c8-975e-6b6fd4c05175",
+              "name": "The project has been updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sourceRepository\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"teamId\": \"string\",\n  \"sourceRepository\": \"string\",\n  \"runtime\": \"node22\",\n  \"transport\": \"sse\",\n  \"rootDirectory\": \"string\",\n  \"buildCommand\": \"string\",\n  \"buildOutputDir\": \"string\",\n  \"installCommand\": \"string\",\n  \"startCommand\": \"string\",\n  \"createdAt\": \"1967-05-19T10:47:34.257Z\",\n  \"productionEnvironment\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"mcpServerUrl\": \"string\",\n    \"domains\": [\n      {\n        \"domain\": \"string\",\n        \"status\": \"failed\",\n        \"createdAt\": \"1987-10-28T03:10:50.570Z\"\n      },\n      {\n        \"domain\": \"string\",\n        \"status\": \"ongoing\",\n        \"createdAt\": \"2000-02-02T07:50:03.663Z\"\n      }\n    ],\n    \"latestDeployment\": {\n      \"id\": \"string\",\n      \"status\": \"canceled\",\n      \"sourceCommitId\": \"string\",\n      \"sourceCommitMessage\": \"string\",\n      \"completedAt\": \"1962-06-02T10:51:54.542Z\"\n    }\n  },\n  \"environments\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"sourceBranch\": \"string\",\n      \"mcpServerUrl\": \"string\",\n      \"createdAt\": \"2012-05-19T02:27:15.347Z\",\n      \"projectId\": \"string\",\n      \"latestDeployment\": {\n        \"id\": \"string\",\n        \"status\": \"ongoing\",\n        \"sourceCommitId\": \"string\",\n        \"sourceCommitMessage\": \"string\",\n        \"completedAt\": \"2015-03-15T17:06:07.276Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"sourceBranch\": \"string\",\n      \"mcpServerUrl\": \"string\",\n      \"createdAt\": \"2024-09-28T06:34:16.498Z\",\n      \"projectId\": \"string\",\n      \"latestDeployment\": {\n        \"id\": \"string\",\n        \"status\": \"ongoing\",\n        \"sourceCommitId\": \"string\",\n        \"sourceCommitMessage\": \"string\",\n        \"completedAt\": \"1954-02-01T07:10:21.277Z\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e85feec0-f42b-4376-9601-acbe910ed8c4",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sourceRepository\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Bad Request\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9bc6579-8a3b-4d9e-9daa-0ccaacebe34b",
+              "name": "403",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sourceRepository\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Forbidden\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4571d6a-ec00-4760-b455-24e8ed0338dd",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sourceRepository\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Not Found\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7156fd84-8412-4b57-a3a0-e150d298b5d1",
+          "name": "Get a project",
+          "request": {
+            "name": "Get a project",
+            "description": {
+              "content": "Get a project by ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8385e272-4938-40d5-b4ae-24e8ce369853",
+              "name": "The project details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"teamId\": \"string\",\n  \"sourceRepository\": \"string\",\n  \"runtime\": \"node22\",\n  \"transport\": \"sse\",\n  \"rootDirectory\": \"string\",\n  \"buildCommand\": \"string\",\n  \"buildOutputDir\": \"string\",\n  \"installCommand\": \"string\",\n  \"startCommand\": \"string\",\n  \"createdAt\": \"1967-05-19T10:47:34.257Z\",\n  \"productionEnvironment\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"mcpServerUrl\": \"string\",\n    \"domains\": [\n      {\n        \"domain\": \"string\",\n        \"status\": \"failed\",\n        \"createdAt\": \"1987-10-28T03:10:50.570Z\"\n      },\n      {\n        \"domain\": \"string\",\n        \"status\": \"ongoing\",\n        \"createdAt\": \"2000-02-02T07:50:03.663Z\"\n      }\n    ],\n    \"latestDeployment\": {\n      \"id\": \"string\",\n      \"status\": \"canceled\",\n      \"sourceCommitId\": \"string\",\n      \"sourceCommitMessage\": \"string\",\n      \"completedAt\": \"1962-06-02T10:51:54.542Z\"\n    }\n  },\n  \"environments\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"sourceBranch\": \"string\",\n      \"mcpServerUrl\": \"string\",\n      \"createdAt\": \"2012-05-19T02:27:15.347Z\",\n      \"projectId\": \"string\",\n      \"latestDeployment\": {\n        \"id\": \"string\",\n        \"status\": \"ongoing\",\n        \"sourceCommitId\": \"string\",\n        \"sourceCommitMessage\": \"string\",\n        \"completedAt\": \"2015-03-15T17:06:07.276Z\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"sourceBranch\": \"string\",\n      \"mcpServerUrl\": \"string\",\n      \"createdAt\": \"2024-09-28T06:34:16.498Z\",\n      \"projectId\": \"string\",\n      \"latestDeployment\": {\n        \"id\": \"string\",\n        \"status\": \"ongoing\",\n        \"sourceCommitId\": \"string\",\n        \"sourceCommitMessage\": \"string\",\n        \"completedAt\": \"1954-02-01T07:10:21.277Z\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73fe6959-ca7e-48cb-b15c-9c7dea5dccbd",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Not Found\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9424cb91-eb15-41e3-9659-2029e706e5fe",
+          "name": "Delete a project",
+          "request": {
+            "name": "Delete a project",
+            "description": {
+              "content": "Delete a project and all its environments",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6d0a0c26-3ee6-4bef-ba23-bf1ae713dd27",
+              "name": "The project has been deleted successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"success\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bf1be84a-a2af-4dae-8858-011defe44324",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Not Found\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "55ffeda9-9a8a-4bd5-8066-e4665e6fa4ca",
+          "name": "List projects",
+          "request": {
+            "name": "List projects",
+            "description": {
+              "content": "List all projects for a team",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "teamId",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "67ffa7cc-06af-4a41-8bc0-a4ddad385ba3",
+              "name": "The list of projects",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "teamId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"teamId\": \"string\",\n    \"sourceRepository\": \"string\",\n    \"runtime\": \"python3.14\",\n    \"transport\": \"sse\",\n    \"rootDirectory\": \"string\",\n    \"buildCommand\": \"string\",\n    \"buildOutputDir\": \"string\",\n    \"installCommand\": \"string\",\n    \"startCommand\": \"string\",\n    \"createdAt\": \"1988-11-22T17:42:33.329Z\",\n    \"productionEnvironment\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"mcpServerUrl\": \"string\",\n      \"domains\": [\n        {\n          \"domain\": \"string\",\n          \"status\": \"ongoing\",\n          \"createdAt\": \"1955-12-17T11:47:36.668Z\"\n        },\n        {\n          \"domain\": \"string\",\n          \"status\": \"ongoing\",\n          \"createdAt\": \"1956-11-13T07:13:47.602Z\"\n        }\n      ],\n      \"latestDeployment\": {\n        \"id\": \"string\",\n        \"status\": \"failed\",\n        \"sourceCommitId\": \"string\",\n        \"sourceCommitMessage\": \"string\",\n        \"completedAt\": \"2008-11-21T12:20:14.927Z\"\n      }\n    },\n    \"environments\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"sourceBranch\": \"string\",\n        \"mcpServerUrl\": \"string\",\n        \"createdAt\": \"1982-11-03T03:35:23.848Z\",\n        \"projectId\": \"string\",\n        \"latestDeployment\": {\n          \"id\": \"string\",\n          \"status\": \"deployed\",\n          \"sourceCommitId\": \"string\",\n          \"sourceCommitMessage\": \"string\",\n          \"completedAt\": \"2006-06-14T19:59:35.449Z\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"sourceBranch\": \"string\",\n        \"mcpServerUrl\": \"string\",\n        \"createdAt\": \"2002-03-20T08:28:48.420Z\",\n        \"projectId\": \"string\",\n        \"latestDeployment\": {\n          \"id\": \"string\",\n          \"status\": \"failed\",\n          \"sourceCommitId\": \"string\",\n          \"sourceCommitMessage\": \"string\",\n          \"completedAt\": \"1948-07-07T08:13:22.942Z\"\n        }\n      }\n    ]\n  },\n  {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"teamId\": \"string\",\n    \"sourceRepository\": \"string\",\n    \"runtime\": \"python3.13\",\n    \"transport\": \"sse\",\n    \"rootDirectory\": \"string\",\n    \"buildCommand\": \"string\",\n    \"buildOutputDir\": \"string\",\n    \"installCommand\": \"string\",\n    \"startCommand\": \"string\",\n    \"createdAt\": \"1947-02-23T11:28:38.333Z\",\n    \"productionEnvironment\": {\n      \"id\": \"string\",\n      \"name\": \"string\",\n      \"mcpServerUrl\": \"string\",\n      \"domains\": [\n        {\n          \"domain\": \"string\",\n          \"status\": \"failed\",\n          \"createdAt\": \"2021-10-06T09:17:27.361Z\"\n        },\n        {\n          \"domain\": \"string\",\n          \"status\": \"ongoing\",\n          \"createdAt\": \"1946-09-27T08:12:23.748Z\"\n        }\n      ],\n      \"latestDeployment\": {\n        \"id\": \"string\",\n        \"status\": \"failed\",\n        \"sourceCommitId\": \"string\",\n        \"sourceCommitMessage\": \"string\",\n        \"completedAt\": \"2005-08-21T11:59:29.866Z\"\n      }\n    },\n    \"environments\": [\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"sourceBranch\": \"string\",\n        \"mcpServerUrl\": \"string\",\n        \"createdAt\": \"2000-12-09T19:07:52.243Z\",\n        \"projectId\": \"string\",\n        \"latestDeployment\": {\n          \"id\": \"string\",\n          \"status\": \"ongoing\",\n          \"sourceCommitId\": \"string\",\n          \"sourceCommitMessage\": \"string\",\n          \"completedAt\": \"2024-12-18T08:53:59.617Z\"\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"sourceBranch\": \"string\",\n        \"mcpServerUrl\": \"string\",\n        \"createdAt\": \"1958-04-16T01:46:53.986Z\",\n        \"projectId\": \"string\",\n        \"latestDeployment\": {\n          \"id\": \"string\",\n          \"status\": \"failed\",\n          \"sourceCommitId\": \"string\",\n          \"sourceCommitMessage\": \"string\",\n          \"completedAt\": \"1958-03-29T03:46:00.047Z\"\n        }\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39ccec46-39a9-4497-bd0c-56a8cb5a0752",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "teamId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Bad Request\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48aaaaf7-5ce5-48fc-956e-0d41b74b168d",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "teamId",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Not Found\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9d583c09-abc6-4869-8c83-1a0c7717e6c7",
+          "name": "Create a project",
+          "request": {
+            "name": "Create a project",
+            "description": {
+              "content": "Create a project for a team",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"runtime\": \"<string>\",\n  \"teamId\": \"<string>\",\n  \"sourceRepository\": \"<string>\",\n  \"branchName\": \"<string>\",\n  \"transport\": \"<string>\",\n  \"rootDirectory\": \"<string>\",\n  \"settings\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "379b8b67-c7e7-4b35-b11c-70af9263264c",
+              "name": "The project has been created successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"runtime\": \"<string>\",\n  \"teamId\": \"<string>\",\n  \"sourceRepository\": \"<string>\",\n  \"branchName\": \"<string>\",\n  \"transport\": \"<string>\",\n  \"rootDirectory\": \"<string>\",\n  \"settings\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"name\": \"string\",\n  \"teamId\": \"string\",\n  \"environments\": [\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"id\": \"string\",\n      \"name\": \"string\"\n    }\n  ],\n  \"productionEnvironment\": {\n    \"id\": \"string\",\n    \"name\": \"string\"\n  },\n  \"sourceRepository\": \"string\",\n  \"runtime\": \"node22\",\n  \"transport\": \"sse\",\n  \"rootDirectory\": \"string\",\n  \"buildCommand\": \"string\",\n  \"buildOutputDir\": \"string\",\n  \"installCommand\": \"string\",\n  \"startCommand\": \"string\",\n  \"createdAt\": \"2005-05-14T17:25:44.579Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "89bae607-9e8f-4cd8-b5eb-3492377d5e43",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"runtime\": \"<string>\",\n  \"teamId\": \"<string>\",\n  \"sourceRepository\": \"<string>\",\n  \"branchName\": \"<string>\",\n  \"transport\": \"<string>\",\n  \"rootDirectory\": \"<string>\",\n  \"settings\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Bad Request\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "26fc1655-6e04-4c17-a210-dcfcaeff969d",
+              "name": "403",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"runtime\": \"<string>\",\n  \"teamId\": \"<string>\",\n  \"sourceRepository\": \"<string>\",\n  \"branchName\": \"<string>\",\n  \"transport\": \"<string>\",\n  \"rootDirectory\": \"<string>\",\n  \"settings\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Forbidden\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c03043c0-84c5-4a0e-82b8-35534242b398",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"runtime\": \"<string>\",\n  \"teamId\": \"<string>\",\n  \"sourceRepository\": \"<string>\",\n  \"branchName\": \"<string>\",\n  \"transport\": \"<string>\",\n  \"rootDirectory\": \"<string>\",\n  \"settings\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Not Found\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.alpic.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6a23389f-0bf3-4fb8-b07f-c31c829cf8e0",
+    "name": "Alpic analytics projects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Alpic analytics distribution API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "distribution",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Publish a server to the MCP registry",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.alpic.ai/v1/distribution/publish",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Publish a server to the MCP registry"
+        },
+        {
+          "info": {
+            "name": "Get server info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.alpic.ai/v1/distribution/get",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "domain",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get info about a server"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

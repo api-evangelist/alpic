@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Alpic analytics tunnels API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "tunnels",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a tunnel ticket",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.alpic.ai/v1/tunnels/ticket"
+          },
+          "docs": "Get a signed ticket for establishing a tunnel connection. Requires user authentication (API keys are not supported)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

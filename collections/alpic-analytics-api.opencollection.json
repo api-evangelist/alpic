@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Alpic analytics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get project analytics",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.alpic.ai/v1/analytics/:projectId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "startTimestamp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "endTimestamp",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "timeZone",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Get analytics data for a project over a time range"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Alpic analytics beacon API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "beacon",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a beacon audit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.alpic.ai/v1/beacon/audits",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Audit an MCP server for spec compliance and AI client compatibility"
+        },
+        {
+          "info": {
+            "name": "Get a beacon audit",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.alpic.ai/v1/beacon/audits/:auditId",
+            "params": [
+              {
+                "name": "auditId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get a beacon audit by ID, including the report if completed"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

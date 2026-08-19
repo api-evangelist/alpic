@@ -1,0 +1,404 @@
+{
+  "item": [
+    {
+      "id": "f3310447-1956-4fa6-a998-8109d94cfc38",
+      "name": "beacon",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "31c5b0c9-59af-40af-9287-9601bbfc0fde",
+          "name": "Create a beacon audit",
+          "request": {
+            "name": "Create a beacon audit",
+            "description": {
+              "content": "Audit an MCP server for spec compliance and AI client compatibility",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "beacon",
+                "audits"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"targetUrl\": \"<uri>\",\n  \"teamId\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"excludeCategories\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3bf6960a-7659-4742-b58a-2bac7bd010d8",
+              "name": "The audit has been created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beacon",
+                    "audits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targetUrl\": \"<uri>\",\n  \"teamId\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"excludeCategories\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ff77fe04-cb65-486e-bddd-75bc8006aa3e",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beacon",
+                    "audits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targetUrl\": \"<uri>\",\n  \"teamId\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"excludeCategories\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Bad Request\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eaccf240-fc8d-457b-9cfb-d0c5085dc92c",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beacon",
+                    "audits"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"targetUrl\": \"<uri>\",\n  \"teamId\": \"<string>\",\n  \"projectId\": \"<string>\",\n  \"excludeCategories\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Not Found\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b55cd297-071a-429d-942b-41d259834220",
+          "name": "Get a beacon audit",
+          "request": {
+            "name": "Get a beacon audit",
+            "description": {
+              "content": "Get a beacon audit by ID, including the report if completed",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "beacon",
+                "audits",
+                ":auditId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "auditId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "268eff69-655d-4d63-abaa-1dd407158be5",
+              "name": "The audit details",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beacon",
+                    "audits",
+                    ":auditId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "auditId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"targetUrl\": \"string\",\n  \"status\": \"failed\",\n  \"durationMs\": 4853.107588060754,\n  \"createdAt\": \"1987-11-30T00:37:57.489Z\",\n  \"report\": {\n    \"schemaVersion\": \"string\",\n    \"auditId\": \"string\",\n    \"targetUrl\": \"string\",\n    \"startedAt\": \"string\",\n    \"completedAt\": \"string\",\n    \"durationMs\": 6966.349842756289,\n    \"results\": [\n      {\n        \"checkId\": \"string\",\n        \"checkName\": \"string\",\n        \"description\": \"string\",\n        \"status\": \"pending\",\n        \"message\": \"string\",\n        \"severity\": \"info\",\n        \"category\": \"resource-metadata\",\n        \"scope\": \"server\",\n        \"durationMs\": 3095.405923595993,\n        \"skipReason\": \"string\",\n        \"platforms\": [\n          \"claudeai\",\n          \"claudeai\"\n        ],\n        \"details\": [\n          {\n            \"label\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"label\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"hint\": {\n          \"text\": \"string\"\n        }\n      },\n      {\n        \"checkId\": \"string\",\n        \"checkName\": \"string\",\n        \"description\": \"string\",\n        \"status\": \"skip\",\n        \"message\": \"string\",\n        \"severity\": \"warning\",\n        \"category\": \"performance\",\n        \"scope\": \"view\",\n        \"durationMs\": 3016.138895441548,\n        \"skipReason\": \"string\",\n        \"platforms\": [\n          \"claudeai\",\n          \"chatgpt\"\n        ],\n        \"details\": [\n          {\n            \"label\": \"string\",\n            \"value\": \"string\"\n          },\n          {\n            \"label\": \"string\",\n            \"value\": \"string\"\n          }\n        ],\n        \"hint\": {\n          \"text\": \"string\"\n        }\n      }\n    ],\n    \"requiresAuth\": true,\n    \"hasViewSupport\": true,\n    \"isReadyForPlatform\": {\n      \"key_0\": false,\n      \"key_1\": false\n    },\n    \"widgetScreenshotKeys\": {\n      \"chatgpt\": \"string\",\n      \"claudeai\": \"string\"\n    },\n    \"widgetScreenshots\": {\n      \"chatgpt\": {\n        \"url\": \"string\"\n      },\n      \"claudeai\": {\n        \"url\": \"string\"\n      }\n    },\n    \"viewPlatforms\": [\n      \"chatgpt\",\n      \"claudeai\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55e15db8-7dd8-4d4f-a559-701cc66ed9fc",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "beacon",
+                    "audits",
+                    ":auditId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "auditId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Not Found\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.alpic.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e1e20f5f-6277-4c90-af08-8c21a83adbc0",
+    "name": "Alpic analytics beacon API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

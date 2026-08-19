@@ -2,86 +2,90 @@ generated: '2026-07-17'
 method: derived
 status: candidate
 source: openapi/alpic-openapi-original.json
-notes: >-
-  Alpic is itself an MCP-native hosting platform (it deploys and hosts other teams' MCP
-  servers), but publishes no official hosted MCP server for its own management REST API.
-  This is a DERIVED candidate tool list mapping the Alpic REST API operations one-to-one
-  to MCP tools, for building an Alpic management MCP server. Mark status: published and add
-  server.url if/when Alpic ships an official one.
+notes: 'Alpic is itself an MCP-native hosting platform (it deploys and hosts other teams'' MCP servers),
+  but publishes no official hosted MCP server for its own management REST API. This is a DERIVED candidate
+  tool list mapping the Alpic REST API operations one-to-one to MCP tools, for building an Alpic management
+  MCP server. Mark status: published and add server.url if/when Alpic ships an official one.'
 server:
   name: alpic
   transport: http
   url: null
 tools:
-  - name: list_teams
-    description: List all teams for the authenticated user.
-    source_operation: openapi/alpic-openapi-original.json#teams.list.v1
-  - name: list_projects
-    description: List all projects for a team.
-    source_operation: openapi/alpic-openapi-original.json#projects.list.v1
-  - name: create_project
-    description: Create a project (MCP server) for a team.
-    source_operation: openapi/alpic-openapi-original.json#projects.create.v1
-  - name: get_project
-    description: Get a project by ID.
-    source_operation: openapi/alpic-openapi-original.json#projects.get.v1
-  - name: update_project
-    description: Update project settings.
-    source_operation: openapi/alpic-openapi-original.json#projects.update.v1
-  - name: delete_project
-    description: Delete a project and all its environments.
-    source_operation: openapi/alpic-openapi-original.json#projects.delete.v1
-  - name: create_environment
-    description: Create an environment for a project.
-    source_operation: openapi/alpic-openapi-original.json#environments.create.v1
-  - name: get_environment
-    description: Get an environment by ID.
-    source_operation: openapi/alpic-openapi-original.json#environments.get.v1
-  - name: deploy_environment
-    description: Deploy an environment.
-    source_operation: openapi/alpic-openapi-original.json#environments.deploy.v1
-  - name: get_environment_logs
-    description: Get logs for an environment.
-    source_operation: openapi/alpic-openapi-original.json#environments.getLogs.v1
-  - name: get_latest_logs
-    description: Get the N most recent logs for an environment.
-    source_operation: openapi/alpic-openapi-original.json#environments.getLatestLogs.v1
-  - name: list_environment_variables
-    description: List all environment variables for an environment.
-    source_operation: openapi/alpic-openapi-original.json#environmentVariables.list.v1
-  - name: add_environment_variables
-    description: Add one or more environment variables to an environment.
-    source_operation: openapi/alpic-openapi-original.json#environmentVariables.create.v1
-  - name: update_environment_variable
-    description: Update an environment variable by ID.
-    source_operation: openapi/alpic-openapi-original.json#environmentVariables.update.v1
-  - name: delete_environment_variable
-    description: Delete an environment variable by ID.
-    source_operation: openapi/alpic-openapi-original.json#environmentVariables.delete.v1
-  - name: get_deployment
-    description: Get a deployment by ID.
-    source_operation: openapi/alpic-openapi-original.json#deployments.get.v1
-  - name: get_project_analytics
-    description: Get analytics data for a project over a time range.
-    source_operation: openapi/alpic-openapi-original.json#analytics.get.v1
-  - name: get_playground_configuration
-    description: Get the playground configuration for an environment.
-    source_operation: openapi/alpic-openapi-original.json#playground.get.v1
-  - name: update_playground_configuration
-    description: Update the playground configuration for an environment.
-    source_operation: openapi/alpic-openapi-original.json#playground.upsert.v1
-  - name: get_tunnel_ticket
-    description: Get a signed ticket for establishing a tunnel connection (user auth only).
-    source_operation: openapi/alpic-openapi-original.json#tunnels.getTicket.v1
-  - name: publish_to_mcp_registry
-    description: Publish a server to the MCP registry.
-    source_operation: openapi/alpic-openapi-original.json#distribution.publish.v1
-  - name: get_server_info
-    description: Get info about a published server.
-    source_operation: openapi/alpic-openapi-original.json#distribution.get.v1
-  - name: create_beacon_audit
-    description: Audit an MCP server for spec compliance and AI client compatibility.
-    source_operation: openapi/alpic-openapi-original.json#beacon.create.v1
-  - name: get_beacon_audit
-    description: Get a beacon audit by ID, including the report if completed.
-    source_operation: openapi/alpic-openapi-original.json#beacon.get.v1
+- name: list_teams
+  description: List all teams for the authenticated user.
+  source_operation: openapi/alpic-openapi-original.json#teams.list.v1
+- name: list_projects
+  description: List all projects for a team.
+  source_operation: openapi/alpic-openapi-original.json#projects.list.v1
+- name: create_project
+  description: Create a project (MCP server) for a team.
+  source_operation: openapi/alpic-openapi-original.json#projects.create.v1
+- name: get_project
+  description: Get a project by ID.
+  source_operation: openapi/alpic-openapi-original.json#projects.get.v1
+- name: update_project
+  description: Update project settings.
+  source_operation: openapi/alpic-openapi-original.json#projects.update.v1
+- name: delete_project
+  description: Delete a project and all its environments.
+  source_operation: openapi/alpic-openapi-original.json#projects.delete.v1
+- name: create_environment
+  description: Create an environment for a project.
+  source_operation: openapi/alpic-openapi-original.json#environments.create.v1
+- name: get_environment
+  description: Get an environment by ID.
+  source_operation: openapi/alpic-openapi-original.json#environments.get.v1
+- name: deploy_environment
+  description: Deploy an environment.
+  source_operation: openapi/alpic-openapi-original.json#environments.deploy.v1
+- name: get_environment_logs
+  description: Get logs for an environment.
+  source_operation: openapi/alpic-openapi-original.json#environments.getLogs.v1
+- name: get_latest_logs
+  description: Get the N most recent logs for an environment.
+  source_operation: openapi/alpic-openapi-original.json#environments.getLatestLogs.v1
+- name: list_environment_variables
+  description: List all environment variables for an environment.
+  source_operation: openapi/alpic-openapi-original.json#environmentVariables.list.v1
+- name: add_environment_variables
+  description: Add one or more environment variables to an environment.
+  source_operation: openapi/alpic-openapi-original.json#environmentVariables.create.v1
+- name: update_environment_variable
+  description: Update an environment variable by ID.
+  source_operation: openapi/alpic-openapi-original.json#environmentVariables.update.v1
+- name: delete_environment_variable
+  description: Delete an environment variable by ID.
+  source_operation: openapi/alpic-openapi-original.json#environmentVariables.delete.v1
+- name: get_deployment
+  description: Get a deployment by ID.
+  source_operation: openapi/alpic-openapi-original.json#deployments.get.v1
+- name: get_project_analytics
+  description: Get analytics data for a project over a time range.
+  source_operation: openapi/alpic-openapi-original.json#analytics.get.v1
+- name: get_playground_configuration
+  description: Get the playground configuration for an environment.
+  source_operation: openapi/alpic-openapi-original.json#playground.get.v1
+- name: update_playground_configuration
+  description: Update the playground configuration for an environment.
+  source_operation: openapi/alpic-openapi-original.json#playground.upsert.v1
+- name: get_tunnel_ticket
+  description: Get a signed ticket for establishing a tunnel connection (user auth only).
+  source_operation: openapi/alpic-openapi-original.json#tunnels.getTicket.v1
+- name: publish_to_mcp_registry
+  description: Publish a server to the MCP registry.
+  source_operation: openapi/alpic-openapi-original.json#distribution.publish.v1
+- name: get_server_info
+  description: Get info about a published server.
+  source_operation: openapi/alpic-openapi-original.json#distribution.get.v1
+- name: create_beacon_audit
+  description: Audit an MCP server for spec compliance and AI client compatibility.
+  source_operation: openapi/alpic-openapi-original.json#beacon.create.v1
+- name: get_beacon_audit
+  description: Get a beacon audit by ID, including the report if completed.
+  source_operation: openapi/alpic-openapi-original.json#beacon.get.v1
+deployment:
+  mode: none
+  verified: derived
+  tools: 24
+  checked: '2026-08-12'
+  source: catalog MCP census

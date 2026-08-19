@@ -1,0 +1,303 @@
+{
+  "item": [
+    {
+      "id": "b9a04068-4881-44fe-8671-3bac666b7312",
+      "name": "analytics",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f411a9a3-34bf-4085-ae29-7323e6031730",
+          "name": "Get project analytics",
+          "request": {
+            "name": "Get project analytics",
+            "description": {
+              "content": "Get analytics data for a project over a time range",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "analytics",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "startTimestamp",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "endTimestamp",
+                  "value": "<number>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "timeZone",
+                  "value": "<string>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "126fc3a2-4e49-4b7c-bdb7-954986916586",
+              "name": "The project analytics data",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analytics",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTimestamp",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "endTimestamp",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "timeZone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"metadata\": {\n    \"startTimestamp\": 8644.98893309465,\n    \"endTimestamp\": 487.7199694451939,\n    \"timeZone\": \"string\",\n    \"startDate\": \"2004-10-28T10:08:58.997Z\",\n    \"interval\": \"string\"\n  },\n  \"timeSeries\": {\n    \"sessions_count\": [\n      {\n        \"timestamp\": 6350.768551529956,\n        \"categories\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"timestamp\": 3933.793551039333,\n        \"categories\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      }\n    ],\n    \"requests_count\": [\n      {\n        \"timestamp\": 1154.9477761224869,\n        \"categories\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"timestamp\": 6422.651366242385,\n        \"categories\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"requests_latency_mean\": [\n      {\n        \"timestamp\": 9999.075583955382,\n        \"categories\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"timestamp\": 3081.5533622558232,\n        \"categories\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"tool_errors\": [\n      {\n        \"timestamp\": 5868.848974512356,\n        \"categories\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"timestamp\": 4901.768822752438,\n        \"categories\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"mcp_errors\": [\n      {\n        \"timestamp\": 6507.850081373744,\n        \"categories\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        }\n      },\n      {\n        \"timestamp\": 4045.2319431147234,\n        \"categories\": {\n          \"key_0\": {}\n        }\n      }\n    ],\n    \"output_token_mean\": [\n      {\n        \"timestamp\": 3967.2638641272483,\n        \"categories\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"timestamp\": 7584.961620679055,\n        \"categories\": {\n          \"key_0\": {}\n        }\n      }\n    ],\n    \"task_count\": [\n      {\n        \"timestamp\": 2113.9807459571057,\n        \"categories\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      },\n      {\n        \"timestamp\": 3207.2012412114645,\n        \"categories\": {\n          \"key_0\": {}\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef149423-1121-430c-bbe3-560bdf5ac23a",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analytics",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTimestamp",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "endTimestamp",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "timeZone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Bad Request\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3a27cc3a-3da5-43e7-a511-ebf22cb5ca65",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "analytics",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "startTimestamp",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "endTimestamp",
+                      "value": "<number>"
+                    },
+                    {
+                      "key": "timeZone",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"defined\": {},\n  \"code\": {},\n  \"status\": {},\n  \"message\": \"Not Found\",\n  \"data\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.alpic.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "df22cb1c-8061-461c-8d52-0b9202b3dbec",
+    "name": "Alpic analytics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
