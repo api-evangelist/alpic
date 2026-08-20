@@ -35,6 +35,15 @@ modified: '2026-07-17'
 image: https://framerusercontent.com/images/WZiXUn1MVLa0eLUmTzKrnFH9tUs.png
 tags:
 - Company
+- Ai Ml
+- MCP
+- Cloud Platform
+- Developer Tools
+- Deployment
+- ChatGPT Apps
+- Agentic
+tags_raw:
+- Company
 - Ai/Ml
 - MCP
 - Model Context Protocol
@@ -55,6 +64,8 @@ apis:
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
   tags:
+  - Analytics
+  tags_raw:
   - analytics
   properties:
   - type: OpenAPI
@@ -77,6 +88,8 @@ apis:
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
   tags:
+  - Beacon
+  tags_raw:
   - beacon
   properties:
   - type: OpenAPI
@@ -99,6 +112,8 @@ apis:
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
   tags:
+  - Deployment
+  tags_raw:
   - deployments
   properties:
   - type: OpenAPI
@@ -121,6 +136,8 @@ apis:
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
   tags:
+  - Distribution
+  tags_raw:
   - distribution
   properties:
   - type: OpenAPI
@@ -143,6 +160,8 @@ apis:
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
   tags:
+  - Environments
+  tags_raw:
   - environments
   properties:
   - type: OpenAPI
@@ -165,6 +184,8 @@ apis:
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
   tags:
+  - Project
+  tags_raw:
   - projects
   properties:
   - type: OpenAPI
@@ -187,6 +208,8 @@ apis:
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
   tags:
+  - Team
+  tags_raw:
   - teams
   properties:
   - type: OpenAPI
@@ -209,6 +232,8 @@ apis:
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
   tags:
+  - Tunnels
+  tags_raw:
   - tunnels
   properties:
   - type: OpenAPI
