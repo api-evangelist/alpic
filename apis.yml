@@ -47,7 +47,7 @@ modified: '2026-07-17'
 image: https://framerusercontent.com/images/WZiXUn1MVLa0eLUmTzKrnFH9tUs.png
 tags:
 - Company
-- Ai/Ml
+- Ai Ml
 - MCP
 - Cloud Platform
 - Developer Tools
@@ -244,7 +244,7 @@ apis:
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
   tags:
-  - tunnels
+  - Tunnels
   tags_raw:
   - tunnels
   properties:
