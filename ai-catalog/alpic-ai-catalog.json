@@ -1,0 +1,82 @@
+{
+  "specVersion": "1.0",
+  "host": {
+    "displayName": "Alpic",
+    "identifier": "did:web:alpic.ai",
+    "documentationUrl": "https://docs.alpic.ai"
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:alpic.ai:mcp:platform",
+      "type": "application/mcp-server-card+json",
+      "description": "Manage Alpic projects, inspect deployments, retrieve logs, and review MCP analytics.",
+      "version": "1.0.0",
+      "url": "https://alpic.ai/.well-known/mcp-server-card.json",
+      "publisher": {
+        "identifier": "did:web:alpic.ai",
+        "displayName": "Alpic",
+        "identityType": "did"
+      }
+    },
+    {
+      "identifier": "urn:air:alpic.ai:skill:build-mcp-apps",
+      "displayName": "Build MCP Apps with Skybridge",
+      "type": "application/agent-skills+md",
+      "description": "Build and update MCP servers, MCP Apps, and ChatGPT Apps with Skybridge.",
+      "url": "https://raw.githubusercontent.com/alpic-ai/alpic-plugin/main/plugins/alpic/skills/build-mcp-apps/SKILL.md",
+      "publisher": {
+        "identifier": "did:web:alpic.ai",
+        "displayName": "Alpic",
+        "identityType": "did"
+      }
+    },
+    {
+      "identifier": "urn:air:alpic.ai:skill:use-alpic",
+      "displayName": "Use Alpic Cloud",
+      "type": "application/agent-skills+md",
+      "description": "Deploy, manage, debug, secure, analyze, distribute, and publish MCP applications on Alpic.",
+      "url": "https://raw.githubusercontent.com/alpic-ai/alpic-plugin/main/plugins/alpic/skills/use-alpic/SKILL.md",
+      "publisher": {
+        "identifier": "did:web:alpic.ai",
+        "displayName": "Alpic",
+        "identityType": "did"
+      }
+    },
+    {
+      "identifier": "urn:air:alpic.ai:plugin:alpic",
+      "displayName": "Alpic Plugin",
+      "type": "application/agent-plugins+zip",
+      "description": "Alpic and Skybridge plugin for Claude Code, Cursor, and Codex.",
+      "url": "https://github.com/alpic-ai/alpic-plugin/archive/refs/heads/main.zip",
+      "publisher": {
+        "identifier": "did:web:alpic.ai",
+        "displayName": "Alpic",
+        "identityType": "did"
+      }
+    },
+    {
+      "identifier": "urn:air:alpic.ai:api:platform",
+      "displayName": "Alpic Platform API",
+      "type": "application/vnd.oai.openapi+json",
+      "description": "Programmatic access to Alpic projects, deployments, analytics, and distribution.",
+      "url": "https://api.alpic.ai/openapi.json",
+      "publisher": {
+        "identifier": "did:web:alpic.ai",
+        "displayName": "Alpic",
+        "identityType": "did"
+      }
+    },
+    {
+      "identifier": "urn:air:alpic.ai:cli:alpic",
+      "displayName": "Alpic CLI",
+      "type": "application/vnd.npm.package+json",
+      "description": "Deploy and manage MCP servers from a terminal or an automated agent workflow.",
+      "url": "https://registry.npmjs.org/alpic/latest",
+      "publisher": {
+        "identifier": "did:web:alpic.ai",
+        "displayName": "Alpic",
+        "identityType": "did"
+      }
+    }
+  ]
+}
