@@ -26,6 +26,7 @@ conformance:
   soft_gaps:
   - content-type-not-ai-catalog-json
   - cors-not-wildcard
+  - did-web-does-not-resolve
   - entry-no-representativeQueries
   official_tool:
     tool: ARD conformance-test v0.9.1 (ards-project/ard-spec)
@@ -63,6 +64,11 @@ conformance:
       media type. ARD permits extension types without core registration.'
     - '[Alpic CLI] Media type ''application/vnd.npm.package+json'' is a valid application extension media
       type. ARD permits extension types without core registration.'
+  did_web:
+    identifier: did:web:alpic.ai
+    resolved: false
+    verification_methods: 0
+    http_status: 404
 catalog:
   host_display_name: Alpic
   host_identifier: did:web:alpic.ai
