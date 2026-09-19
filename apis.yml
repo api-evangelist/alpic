@@ -47,6 +47,10 @@ specificationVersion: '0.23'
 created: '2026-07-17'
 modified: '2026-07-17'
 image: https://framerusercontent.com/images/WZiXUn1MVLa0eLUmTzKrnFH9tUs.png
+x-docs-platform: mintlify
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-09-17
+x-docs-hosting: vercel
 tags:
 - Company
 - Ai Ml
@@ -174,7 +178,7 @@ apis:
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
   tags:
-  - Environments
+  - Environment
   tags_raw:
   - environments
   properties:
