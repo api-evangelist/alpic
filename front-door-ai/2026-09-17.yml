@@ -1,0 +1,30 @@
+# Front Door AI Index — alpic — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: alpic
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: alpic.ai
+  final_host: alpic.ai
+  ownership: own
+  owner: alpic
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 57
+  host_score: 57
+  density: 72.43
+  words: 787
+  tiers:
+    agentic: 22
+    core: 9
+    model: 26
+  ambiguous: 2
+  top_terms:
+    MCP: 20
+    ChatGPT: 17
+    AI: 9
+    Claude: 9
+    AI assistant: 2
+    agent: 2

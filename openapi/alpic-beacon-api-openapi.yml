@@ -1,6 +1,6 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: Alpic analytics beacon API
+  title: Alpic Beacon API
   version: 1.0.0
 servers:
 - url: https://api.alpic.ai

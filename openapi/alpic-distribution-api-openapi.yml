@@ -1,20 +1,20 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: Alpic analytics distribution API
+  title: Alpic Distribution API
   version: 1.0.0
 servers:
 - url: https://api.alpic.ai
 security:
 - bearerAuth: []
 tags:
-- name: distribution
+- name: Distribution
 paths:
   /v1/distribution/publish:
     post:
       operationId: distribution.publish.v1
       summary: Publish a server to the MCP registry
       tags:
-      - distribution
+      - Distribution
       requestBody:
         required: true
         content:
@@ -207,7 +207,7 @@ paths:
       summary: Get server info
       description: Get info about a server
       tags:
-      - distribution
+      - Distribution
       parameters:
       - name: projectId
         in: query

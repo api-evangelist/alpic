@@ -1,13 +1,13 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: Alpic analytics tunnels API
+  title: Alpic Tunnels API
   version: 1.0.0
 servers:
 - url: https://api.alpic.ai
 security:
 - bearerAuth: []
 tags:
-- name: tunnels
+- name: Tunnels
 paths:
   /v1/tunnels/ticket:
     get:
@@ -15,7 +15,7 @@ paths:
       summary: Get a tunnel ticket
       description: Get a signed ticket for establishing a tunnel connection. Requires user authentication (API keys are not supported).
       tags:
-      - tunnels
+      - Tunnels
       responses:
         '200':
           description: The tunnel ticket

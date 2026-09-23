@@ -1,13 +1,13 @@
-openapi: 3.1.1
+openapi: 3.2.0
 info:
-  title: Alpic analytics projects API
+  title: Alpic Projects API
   version: 1.0.0
 servers:
 - url: https://api.alpic.ai
 security:
 - bearerAuth: []
 tags:
-- name: projects
+- name: Projects
 paths:
   /v1/projects/{projectId}:
     patch:
@@ -15,7 +15,7 @@ paths:
       summary: Update a project
       description: Update project settings
       tags:
-      - projects
+      - Projects
       parameters:
       - name: projectId
         in: path
@@ -369,7 +369,7 @@ paths:
       summary: Get a project
       description: Get a project by ID
       tags:
-      - projects
+      - Projects
       parameters:
       - name: projectId
         in: path
@@ -628,7 +628,7 @@ paths:
       summary: Delete a project
       description: Delete a project and all its environments
       tags:
-      - projects
+      - Projects
       parameters:
       - name: projectId
         in: path
@@ -693,7 +693,7 @@ paths:
       summary: List projects
       description: List all projects for a team
       tags:
-      - projects
+      - Projects
       parameters:
       - name: teamId
         in: query
@@ -993,7 +993,7 @@ paths:
       summary: Create a project
       description: Create a project for a team
       tags:
-      - projects
+      - Projects
       requestBody:
         required: true
         content:

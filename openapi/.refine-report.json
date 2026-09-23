@@ -1,14 +1,7 @@
 {
   "provider": "alpic",
   "sources": [
-    "alpic-analytics-api-openapi.yml",
-    "alpic-beacon-api-openapi.yml",
-    "alpic-deployments-api-openapi.yml",
-    "alpic-distribution-api-openapi.yml",
-    "alpic-environments-api-openapi.yml",
-    "alpic-projects-api-openapi.yml",
-    "alpic-teams-api-openapi.yml",
-    "alpic-tunnels-api-openapi.yml"
+    "_original/alpic-openapi-original.json"
   ],
   "outputs": [
     "alpic-analytics-api-openapi.yml",
@@ -23,6 +16,27 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "alpic-openapi-original.json: upgraded openapi 3.1.1 -> OpenAPI 3.2.0",
+    "alpic-openapi-original.json: declared missing tag: analytics",
+    "alpic-openapi-original.json: declared missing tag: beacon",
+    "alpic-openapi-original.json: declared missing tag: deployments",
+    "alpic-openapi-original.json: declared missing tag: distribution",
+    "alpic-openapi-original.json: declared missing tag: environments",
+    "alpic-openapi-original.json: declared missing tag: projects",
+    "alpic-openapi-original.json: declared missing tag: teams",
+    "alpic-openapi-original.json: declared missing tag: tunnels",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "alpic-analytics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alpic-beacon-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alpic-deployments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alpic-distribution-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alpic-environments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alpic-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alpic-teams-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "alpic-tunnels-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
