@@ -59,7 +59,7 @@ tags:
 - Developer Tools
 - Deployment
 - ChatGPT Apps
-- Agentic
+- AI Agents
 tags_raw:
 - Company
 - Ai/Ml
@@ -77,7 +77,7 @@ maintainers:
   email: info@apis.io
 apis:
 - aid: alpic:alpic-analytics-api
-  name: Alpic analytics API
+  name: Alpic Analytics API
   description: The analytics API from Alpic — 1 operation(s) for analytics.
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
@@ -101,7 +101,7 @@ apis:
   - type: Conformance
     url: conformance/alpic-conformance.yml
 - aid: alpic:alpic-beacon-api
-  name: Alpic beacon API
+  name: Alpic Beacon API
   description: The beacon API from Alpic — 2 operation(s) for beacon.
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
@@ -125,7 +125,7 @@ apis:
   - type: Conformance
     url: conformance/alpic-conformance.yml
 - aid: alpic:alpic-deployments-api
-  name: Alpic deployments API
+  name: Alpic Deployments API
   description: The deployments API from Alpic — 1 operation(s) for deployments.
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
@@ -149,7 +149,7 @@ apis:
   - type: Conformance
     url: conformance/alpic-conformance.yml
 - aid: alpic:alpic-distribution-api
-  name: Alpic distribution API
+  name: Alpic Distribution API
   description: The distribution API from Alpic — 2 operation(s) for distribution.
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
@@ -173,7 +173,7 @@ apis:
   - type: Conformance
     url: conformance/alpic-conformance.yml
 - aid: alpic:alpic-environments-api
-  name: Alpic environments API
+  name: Alpic Environments API
   description: The environments API from Alpic — 8 operation(s) for environments.
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
@@ -197,7 +197,7 @@ apis:
   - type: Conformance
     url: conformance/alpic-conformance.yml
 - aid: alpic:alpic-projects-api
-  name: Alpic projects API
+  name: Alpic Projects API
   description: The projects API from Alpic — 2 operation(s) for projects.
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
@@ -221,7 +221,7 @@ apis:
   - type: Conformance
     url: conformance/alpic-conformance.yml
 - aid: alpic:alpic-teams-api
-  name: Alpic teams API
+  name: Alpic Teams API
   description: The teams API from Alpic — 1 operation(s) for teams.
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
@@ -245,7 +245,7 @@ apis:
   - type: Conformance
     url: conformance/alpic-conformance.yml
 - aid: alpic:alpic-tunnels-api
-  name: Alpic tunnels API
+  name: Alpic Tunnels API
   description: The tunnels API from Alpic — 1 operation(s) for tunnels.
   humanURL: https://docs.alpic.ai/api-reference
   baseURL: https://api.alpic.ai
