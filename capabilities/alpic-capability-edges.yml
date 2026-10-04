@@ -1,0 +1,26 @@
+slug: alpic
+provider: Alpic
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Environments
+  spec_file: alpic-environments-api-openapi.yml
+  capability_id: BC-4210.20
+  capability_id_l1: BC-4210
+  capability_name: Environment Management
+  confidence: 0.75
+  evidence: POST /v1/environments  environments.create.v1  Create an environment ... GET /v1/environments/{environmentId}/environment-variables  environmentVariables.list.v1
+  reason: Creates and stewards deployment environments, deploys to them, reads build/runtime logs and
+    manages environment variables — environment provisioning and runtime configuration for a software
+    platform. Spans environment management and configuration management, so the L2 is the dominant but
+    not exclusive reading.
