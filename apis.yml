@@ -53,7 +53,7 @@ x-docs-platform-checked: 2026-09-17
 x-docs-hosting: vercel
 tags:
 - Company
-- Ai Ml
+- Artificial Intelligence
 - MCP
 - Cloud Platform
 - Developer Tools
@@ -72,6 +72,7 @@ tags_raw:
 - ChatGPT Apps
 - Agentic
 - Platform-as-a-Service
+- Ai Ml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
