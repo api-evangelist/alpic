@@ -9,6 +9,197 @@ security:
 tags:
 - name: Deployments
 paths:
+  /v1/projects/{projectId}/deployments:
+    get:
+      operationId: deployments.list.v1
+      summary: List project deployments
+      description: List all deployments for a project
+      tags:
+      - Deployments
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the project
+      - name: status
+        in: query
+        schema:
+          type: array
+          items:
+            enum:
+            - ongoing
+            - deployed
+            - failed
+            - canceled
+            type: string
+          description: Filter by one or more statuses
+        style: deepObject
+        explode: true
+        allowEmptyValue: true
+        allowReserved: true
+      - name: environmentId
+        in: query
+        schema:
+          type: string
+          description: Filter by environment ID
+        allowEmptyValue: true
+        allowReserved: true
+      responses:
+        '200':
+          description: The list of deployments
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                    status:
+                      enum:
+                      - ongoing
+                      - deployed
+                      - failed
+                      - canceled
+                      type: string
+                    sourceRef:
+                      anyOf:
+                      - type: string
+                      - type: 'null'
+                    sourceCommitId:
+                      anyOf:
+                      - type: string
+                      - type: 'null'
+                    sourceCommitMessage:
+                      anyOf:
+                      - type: string
+                      - type: 'null'
+                    authorUsername:
+                      anyOf:
+                      - type: string
+                      - type: 'null'
+                    authorAvatarUrl:
+                      anyOf:
+                      - type: string
+                      - type: 'null'
+                    startedAt:
+                      anyOf:
+                      - type: string
+                        format: date-time
+                        x-native-type: date
+                      - type: 'null'
+                    completedAt:
+                      anyOf:
+                      - type: string
+                        format: date-time
+                        x-native-type: date
+                      - type: 'null'
+                    environmentId:
+                      type: string
+                    environmentName:
+                      type: string
+                    isCurrent:
+                      type: boolean
+                    deploymentPageUrl:
+                      anyOf:
+                      - type: string
+                        format: uri
+                      - type: 'null'
+                  required:
+                  - id
+                  - status
+                  - sourceRef
+                  - sourceCommitId
+                  - sourceCommitMessage
+                  - authorUsername
+                  - authorAvatarUrl
+                  - startedAt
+                  - completedAt
+                  - environmentId
+                  - environmentName
+                  - isCurrent
+                  - deploymentPageUrl
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
   /v1/deployments/{deploymentId}:
     get:
       operationId: deployments.get.v1
@@ -97,6 +288,161 @@ paths:
                 - environmentName
                 - isCurrent
                 - deploymentPageUrl
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+  /v1/deployments/{deploymentId}/logs:
+    get:
+      operationId: deployments.getLogs.v1
+      summary: Get deployment logs
+      description: Get the logs for a deployment
+      tags:
+      - Deployments
+      parameters:
+      - name: deploymentId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the deployment
+      responses:
+        '200':
+          description: The deployment logs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  logs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        timestamp:
+                          type: string
+                          format: date-time
+                          x-native-type: date
+                        content:
+                          type: string
+                  hasMoreLogs:
+                    type: boolean
+                required:
+                - logs
+                - hasMoreLogs
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
         '404':
           description: '404'
           content:

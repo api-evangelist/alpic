@@ -1,0 +1,12 @@
+{
+ "url": "https://api.alpic.ai/openapi.json",
+ "final": "https://api.alpic.ai/openapi.json",
+ "status": 200,
+ "content_type": "application/json; charset=utf-8",
+ "bytes": 146046,
+ "sha256": "c6e1137c363e637f70601680b12d3cb2edd749e3621db492b7702e1744606029",
+ "fetched_at": "2026-10-19",
+ "fetched_by": "APIEvangelist-Harvest/1.0 (+https://apievangelist.com)",
+ "match": "byte-identical",
+ "note": "re-archived: the provider's current document replaced a stale archive (roadmap#793); the old files are in openapi/_superseded/2026-10-19-stale"
+}

@@ -1,0 +1,2362 @@
+openapi: 3.2.0
+info:
+  title: Alpic Submissions API
+  version: 1.0.0
+servers:
+- url: https://api.alpic.ai
+security:
+- bearerAuth: []
+tags:
+- name: Submissions
+paths:
+  /v1/submissions:
+    post:
+      operationId: submissions.create.v1
+      summary: Create a submission package
+      description: Create a submission package for an environment. Alpic reads the environment's live MCP server and prefills every field it can infer, so the response already carries the populated package. The environment must have a successful deployment and must not require authentication.
+      tags:
+      - Submissions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                environmentId:
+                  type: string
+                  description: The ID of the environment to build the package from
+                platform:
+                  enum:
+                  - chatgpt
+                  - claudeai
+                  type: string
+                  description: 'The directory the package targets: `chatgpt` for the OpenAI App Directory, `claudeai` for the Anthropic MCP Directory'
+              required:
+              - environmentId
+              - platform
+      responses:
+        '200':
+          description: The created submission package, with its prefilled fields
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+  /v1/projects/{projectId}/submissions:
+    get:
+      operationId: submissions.list.v1
+      summary: List submission packages
+      description: List the submission packages of a project, grouped by directory and most recently updated first, optionally narrowed to one environment or one directory
+      tags:
+      - Submissions
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the project
+      - name: environmentId
+        in: query
+        schema:
+          type: string
+          description: Filter by environment ID
+        allowEmptyValue: true
+        allowReserved: true
+      - name: platform
+        in: query
+        schema:
+          enum:
+          - chatgpt
+          - claudeai
+          type: string
+          description: 'The directory the package targets: `chatgpt` for the OpenAI App Directory, `claudeai` for the Anthropic MCP Directory'
+        allowEmptyValue: true
+        allowReserved: true
+      responses:
+        '200':
+          description: The list of submission packages
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Submission'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+  /v1/submissions/{submissionId}:
+    get:
+      operationId: submissions.get.v1
+      summary: Get a submission package
+      description: Get a submission package by ID, including its form data and the prefill it started from
+      tags:
+      - Submissions
+      parameters:
+      - name: submissionId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the submission package
+      responses:
+        '200':
+          description: The submission package
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+    put:
+      operationId: submissions.update.v1
+      summary: Update a submission package
+      description: Update the form data of a submission package. Only the fields you send are changed; the rest are left as they are. Unknown field names are rejected rather than ignored, so a typo fails the call. `platform` must match the package's own platform.
+      tags:
+      - Submissions
+      parameters:
+      - name: submissionId
+        in: path
+        required: true
+        schema:
+          type: string
+          description: The ID of the submission package
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                platform:
+                  anyOf:
+                  - const: claudeai
+                    description: 'The directory the package targets: `chatgpt` for the OpenAI App Directory, `claudeai` for the Anthropic MCP Directory'
+                  - const: chatgpt
+                    description: 'The directory the package targets: `chatgpt` for the OpenAI App Directory, `claudeai` for the Anthropic MCP Directory'
+                formData:
+                  anyOf:
+                  - $ref: '#/components/schemas/ClaudeSubmissionFormDataUpdate'
+                  - $ref: '#/components/schemas/ChatgptSubmissionFormDataUpdate'
+              required:
+              - platform
+              - formData
+      responses:
+        '200':
+          description: The updated submission package
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+        '400':
+          description: '400'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: BAD_REQUEST
+                    status:
+                      const: 400
+                    message:
+                      type: string
+                      default: Bad Request
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+        '404':
+          description: '404'
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - type: object
+                  properties:
+                    defined:
+                      const: true
+                    code:
+                      const: NOT_FOUND
+                    status:
+                      const: 404
+                    message:
+                      type: string
+                      default: Not Found
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+                - type: object
+                  properties:
+                    defined:
+                      const: false
+                    code:
+                      type: string
+                    status:
+                      type: number
+                    message:
+                      type: string
+                    data: {}
+                  required:
+                  - defined
+                  - code
+                  - status
+                  - message
+components:
+  schemas:
+    ChatgptSubmissionFormData:
+      type: object
+      properties:
+        logoLight:
+          type: string
+          description: Logo icon for light mode. Square PNG, no borders or rounded corners (clients apply circular cropping).
+        logoDark:
+          type: string
+          description: Optional dark-mode logo icon. Square PNG, same specs as the light icon. Leave empty if the light icon also works on dark backgrounds.
+        appName:
+          type: string
+          description: The name users will see in ChatGPT and in the Plugin Directory.
+        tagline:
+          type: string
+        description:
+          type: string
+          description: Clear, engaging description highlighting what the plugin does and why people will love it. Appears publicly on the directory page. End it by naming the product categories or intents the plugin does NOT cover, so ChatGPT learns when not to route to it (define exclusions by absent categories or wrong intents, never by naming other brands).
+        category:
+          enum:
+          - BUSINESS
+          - COLLABORATION
+          - DESIGN
+          - DEVELOPER_TOOLS
+          - EDUCATION
+          - ENTERTAINMENT
+          - FINANCE
+          - FOOD
+          - LIFESTYLE
+          - NEWS
+          - PRODUCTIVITY
+          - SHOPPING
+          - TRAVEL
+          type: string
+          description: Category from the OpenAI taxonomy.
+        developerName:
+          type: string
+          description: Developer name shown publicly on the plugin's directory page.
+        companyUrl:
+          type: string
+        supportChannel:
+          type: string
+        privacyPolicyUrl:
+          type: string
+        termsOfServiceUrl:
+          type: string
+        demoRecordingUrl:
+          type: string
+        appCommerceAndPurchasing:
+          type: boolean
+          description: 'Checkbox: ''My plugin links or directs users out of ChatGPT to make purchases.'' Defaults to false. Verify the plugin does not offer digital goods.'
+        serverUrl:
+          type: string
+        authentication:
+          enum:
+          - No auth needed
+          - OAuth 2.0
+          type: string
+          description: OAuth 2.0 or No auth. OAuth configuration is auto-discovered from the MCP server's metadata.
+        tools:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              title:
+                type: string
+                description: Human-friendly name for the tool, used in the UI. If not provided, `name` will be used.
+              description:
+                type: string
+              annotations:
+                type: object
+                properties:
+                  readOnlyHint:
+                    type: boolean
+                  destructiveHint:
+                    type: boolean
+                  openWorldHint:
+                    type: boolean
+                  idempotentHint:
+                    type: boolean
+            required:
+            - name
+          description: List of tools exposed by the MCP server (auto-populated from the production server's manifest).
+        toolJustifications:
+          type: array
+          items:
+            type: object
+            properties:
+              toolName:
+                type: string
+              readOnlyJustification:
+                type: string
+                description: One sentence on what the tool reads and returns.
+              openWorldJustification:
+                type: string
+                description: One sentence on whether the tool reaches external systems beyond your own service.
+              destructiveJustification:
+                type: string
+                description: 'One sentence on whether the tool changes data. For a read-only tool, state the full triad: "No data is created, modified, or deleted."'
+            required:
+            - toolName
+            - readOnlyJustification
+            - openWorldJustification
+            - destructiveJustification
+            description: Per-tool justification of each MCP annotation value (one specific sentence per hint).
+          description: Per-tool justification of `readOnlyHint`, `openWorldHint`, and `destructiveHint` annotation values. One short, specific sentence per hint describing what the tool actually does.
+        skills:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+            required:
+            - name
+            description: A skill discovered on the MCP server, by name.
+          description: Skills the server exposes over MCP (auto-populated from the production server's manifest). Left unset when the server does not advertise the skills extension, which is a different state from advertising it and exposing none.
+        testCases:
+          type: array
+          items:
+            type: object
+            properties:
+              scenario:
+                type: string
+              userPrompt:
+                type: string
+              toolTriggered:
+                type: string
+                description: The tool this prompt should invoke.
+              expectedOutput:
+                type: string
+                description: What the user should see, including post-interaction behaviour where relevant.
+        negativeTestCases:
+          type: array
+          items:
+            type: object
+            properties:
+              scenario:
+                type: string
+              userPrompt:
+                type: string
+        screenshots:
+          type: array
+          items:
+            type: object
+            properties:
+              prompt:
+                type: string
+              url:
+                type: string
+            required:
+            - prompt
+            - url
+        translations:
+          type: array
+          items:
+            type: object
+            properties:
+              locale:
+                enum:
+                - am
+                - ar
+                - bg-BG
+                - bn-BD
+                - bs-BA
+                - ca-ES
+                - cs-CZ
+                - da-DK
+                - de-DE
+                - el-GR
+                - es-419
+                - es-ES
+                - et-EE
+                - fi-FI
+                - fr-CA
+                - fr-FR
+                - gu-IN
+                - hi-IN
+                - hr-HR
+                - hu-HU
+                - hy-AM
+                - id-ID
+                - is-IS
+                - it-IT
+                - ja-JP
+                - ka-GE
+                - kk
+                - kn-IN
+                - ko-KR
+                - lt
+                - lv-LV
+                - mk-MK
+                - ml
+                - mn
+                - mr-IN
+                - ms-MY
+                - my-MM
+                - nb-NO
+                - nl-NL
+                - pa
+                - pl-PL
+                - pt-BR
+                - pt-PT
+                - ro-RO
+                - ru-RU
+                - sk-SK
+                - sl-SI
+                - so-SO
+                - sq-AL
+                - sr-RS
+                - sv-SE
+                - sw-TZ
+                - ta-IN
+                - te-IN
+                - th-TH
+                - tl
+                - tr-TR
+                - uk-UA
+                - ur
+                - vi-VN
+                - zh-CN
+                - zh-HK
+                - zh-TW
+                type: string
+              tagline:
+                type: string
+              description:
+                type: string
+            required:
+            - locale
+            - tagline
+            - description
+        allowedCountries:
+          anyOf:
+          - type: object
+            properties:
+              mode:
+                const: all
+            required:
+            - mode
+          - type: object
+            properties:
+              mode:
+                const: allow
+              countries:
+                type: array
+                items:
+                  enum:
+                  - AD
+                  - AE
+                  - AF
+                  - AG
+                  - AL
+                  - AM
+                  - AO
+                  - AR
+                  - AT
+                  - AU
+                  - AW
+                  - AX
+                  - AZ
+                  - BA
+                  - BB
+                  - BD
+                  - BE
+                  - BF
+                  - BG
+                  - BH
+                  - BI
+                  - BJ
+                  - BL
+                  - BM
+                  - BN
+                  - BO
+                  - BR
+                  - BS
+                  - BT
+                  - BW
+                  - BZ
+                  - CA
+                  - CD
+                  - CF
+                  - CG
+                  - CH
+                  - CI
+                  - CL
+                  - CM
+                  - CO
+                  - CR
+                  - CV
+                  - CY
+                  - CZ
+                  - DE
+                  - DJ
+                  - DK
+                  - DM
+                  - DO
+                  - DZ
+                  - EC
+                  - EE
+                  - EG
+                  - ER
+                  - ES
+                  - ET
+                  - FI
+                  - FJ
+                  - FM
+                  - FO
+                  - FR
+                  - GA
+                  - GB
+                  - GD
+                  - GE
+                  - GF
+                  - GH
+                  - GL
+                  - GM
+                  - GN
+                  - GP
+                  - GQ
+                  - GR
+                  - GT
+                  - GW
+                  - GY
+                  - HN
+                  - HR
+                  - HT
+                  - HU
+                  - ID
+                  - IE
+                  - IL
+                  - IN
+                  - IQ
+                  - IS
+                  - IT
+                  - JM
+                  - JO
+                  - JP
+                  - KE
+                  - KG
+                  - KH
+                  - KI
+                  - KM
+                  - KN
+                  - KR
+                  - KW
+                  - KY
+                  - KZ
+                  - LA
+                  - LB
+                  - LC
+                  - LI
+                  - LK
+                  - LR
+                  - LS
+                  - LT
+                  - LU
+                  - LV
+                  - LY
+                  - MA
+                  - MC
+                  - MD
+                  - ME
+                  - MF
+                  - MG
+                  - MH
+                  - MK
+                  - ML
+                  - MM
+                  - MN
+                  - MQ
+                  - MR
+                  - MT
+                  - MU
+                  - MV
+                  - MW
+                  - MX
+                  - MY
+                  - MZ
+                  - NA
+                  - NC
+                  - NE
+                  - NG
+                  - NI
+                  - NL
+                  - 'NO'
+                  - NP
+                  - NR
+                  - NZ
+                  - OM
+                  - PA
+                  - PE
+                  - PF
+                  - PG
+                  - PH
+                  - PK
+                  - PL
+                  - PM
+                  - PS
+                  - PT
+                  - PW
+                  - PY
+                  - QA
+                  - RE
+                  - RO
+                  - RS
+                  - RW
+                  - SA
+                  - SB
+                  - SC
+                  - SD
+                  - SE
+                  - SG
+                  - SH
+                  - SI
+                  - SJ
+                  - SK
+                  - SL
+                  - SM
+                  - SN
+                  - SO
+                  - SR
+                  - SS
+                  - ST
+                  - SV
+                  - SZ
+                  - TD
+                  - TF
+                  - TG
+                  - TH
+                  - TJ
+                  - TL
+                  - TM
+                  - TN
+                  - TO
+                  - TR
+                  - TT
+                  - TV
+                  - TW
+                  - TZ
+                  - UA
+                  - UG
+                  - US
+                  - UY
+                  - UZ
+                  - VA
+                  - VC
+                  - VN
+                  - VU
+                  - WF
+                  - WS
+                  - YE
+                  - YT
+                  - ZA
+                  - ZM
+                  - ZW
+                  type: string
+            required:
+            - mode
+            - countries
+          - type: object
+            properties:
+              mode:
+                const: block
+              countries:
+                type: array
+                items:
+                  enum:
+                  - AD
+                  - AE
+                  - AF
+                  - AG
+                  - AL
+                  - AM
+                  - AO
+                  - AR
+                  - AT
+                  - AU
+                  - AW
+                  - AX
+                  - AZ
+                  - BA
+                  - BB
+                  - BD
+                  - BE
+                  - BF
+                  - BG
+                  - BH
+                  - BI
+                  - BJ
+                  - BL
+                  - BM
+                  - BN
+                  - BO
+                  - BR
+                  - BS
+                  - BT
+                  - BW
+                  - BZ
+                  - CA
+                  - CD
+                  - CF
+                  - CG
+                  - CH
+                  - CI
+                  - CL
+                  - CM
+                  - CO
+                  - CR
+                  - CV
+                  - CY
+                  - CZ
+                  - DE
+                  - DJ
+                  - DK
+                  - DM
+                  - DO
+                  - DZ
+                  - EC
+                  - EE
+                  - EG
+                  - ER
+                  - ES
+                  - ET
+                  - FI
+                  - FJ
+                  - FM
+                  - FO
+                  - FR
+                  - GA
+                  - GB
+                  - GD
+                  - GE
+                  - GF
+                  - GH
+                  - GL
+                  - GM
+                  - GN
+                  - GP
+                  - GQ
+                  - GR
+                  - GT
+                  - GW
+                  - GY
+                  - HN
+                  - HR
+                  - HT
+                  - HU
+                  - ID
+                  - IE
+                  - IL
+                  - IN
+                  - IQ
+                  - IS
+                  - IT
+                  - JM
+                  - JO
+                  - JP
+                  - KE
+                  - KG
+                  - KH
+                  - KI
+                  - KM
+                  - KN
+                  - KR
+                  - KW
+                  - KY
+                  - KZ
+                  - LA
+                  - LB
+                  - LC
+                  - LI
+                  - LK
+                  - LR
+                  - LS
+                  - LT
+                  - LU
+                  - LV
+                  - LY
+                  - MA
+                  - MC
+                  - MD
+                  - ME
+                  - MF
+                  - MG
+                  - MH
+                  - MK
+                  - ML
+                  - MM
+                  - MN
+                  - MQ
+                  - MR
+                  - MT
+                  - MU
+                  - MV
+                  - MW
+                  - MX
+                  - MY
+                  - MZ
+                  - NA
+                  - NC
+                  - NE
+                  - NG
+                  - NI
+                  - NL
+                  - 'NO'
+                  - NP
+                  - NR
+                  - NZ
+                  - OM
+                  - PA
+                  - PE
+                  - PF
+                  - PG
+                  - PH
+                  - PK
+                  - PL
+                  - PM
+                  - PS
+                  - PT
+                  - PW
+                  - PY
+                  - QA
+                  - RE
+                  - RO
+                  - RS
+                  - RW
+                  - SA
+                  - SB
+                  - SC
+                  - SD
+                  - SE
+                  - SG
+                  - SH
+                  - SI
+                  - SJ
+                  - SK
+                  - SL
+                  - SM
+                  - SN
+                  - SO
+                  - SR
+                  - SS
+                  - ST
+                  - SV
+                  - SZ
+                  - TD
+                  - TF
+                  - TG
+                  - TH
+                  - TJ
+                  - TL
+                  - TM
+                  - TN
+                  - TO
+                  - TR
+                  - TT
+                  - TV
+                  - TW
+                  - TZ
+                  - UA
+                  - UG
+                  - US
+                  - UY
+                  - UZ
+                  - VA
+                  - VC
+                  - VN
+                  - VU
+                  - WF
+                  - WS
+                  - YE
+                  - YT
+                  - ZA
+                  - ZM
+                  - ZW
+                  type: string
+            required:
+            - mode
+            - countries
+          description: 'Availability: all supported countries, or an allow-list / block-list of specific ones (ISO alpha-2).'
+        releaseNotes:
+          type: string
+          description: Publicly displayed on the plugin details page.
+    ClaudeSubmissionFormData:
+      type: object
+      properties:
+        serverUrl:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        oneLiner:
+          type: string
+        description:
+          type: string
+        categories:
+          type: array
+          items:
+            enum:
+            - Productivity
+            - Communication
+            - Data & Analytics
+            - Development tools
+            - Financial Services
+            - Consumer Health
+            - Health & Life Sciences
+            - Media & Entertainment
+            - Commerce & Shopping
+            - Legal
+            - Sales and marketing
+            - Creative
+            - Nonprofit
+            - Education
+            - Other
+            type: string
+        iconUrl:
+          type: string
+        documentation:
+          type: string
+        support:
+          type: string
+        privacyPolicy:
+          type: string
+        screenshots:
+          type: array
+          items:
+            type: object
+            properties:
+              prompt:
+                type: string
+              url:
+                type: string
+            required:
+            - prompt
+            - url
+        primaryUseCases:
+          type: string
+          description: 'Describe the main tasks users will accomplish with this connector, and include a few example prompts a user might
+
+            type. These may be shown publicly but are primarily used for internal review — reviewers test your server using them.'
+        connectionRequirements:
+          type: string
+          description: 'What accounts, permissions, or setup a user needs before connecting (e.g. ''Requires a paid Acme account with admin
+
+            permissions''). If there are genuinely no special requirements, say so explicitly.'
+        readWriteCapabilities:
+          enum:
+          - read_only
+          - write_only
+          - read_write
+          type: string
+          description: 'What your server can do:
+
+            • ''read_only'': retrieves data but never modifies it.
+
+            • ''write_only'': creates or modifies data but does not read it.
+
+            • ''read_write'': both retrieves and modifies data (most common).'
+        companyName:
+          type: string
+          description: The company or organization behind this connector — its legal name or publicly known product name.
+        companyWebsite:
+          type: string
+        primaryContactName:
+          type: string
+          description: Full name of the person Anthropic should contact about this submission. Receives review feedback and follow-up questions.
+        primaryContactEmail:
+          type: string
+        primaryContactRole:
+          type: string
+          description: The primary contact's role at the company (e.g. 'Engineer', 'Product Manager'). Optional.
+        anthropicPointOfContact:
+          type: string
+          description: If you've been working with someone at Anthropic, their name or email. Optional, can expedite review.
+        authentication:
+          enum:
+          - oauth_dcr
+          - oauth_cimd
+          - oauth_anthropic_creds
+          - custom_connection
+          - none
+          type: string
+          description: 'How users authenticate with your server:
+
+            • ''oauth_dcr'': OAuth 2.0 + Dynamic Client Registration (RFC 7591) — clients register themselves.
+
+            • ''oauth_cimd'': OAuth 2.0 + Client ID Metadata Document — a published client_id metadata document.
+
+            • ''oauth_anthropic_creds'': OAuth 2.0 with Anthropic-held client credentials (a static client_id, and secret if needed).
+
+            • ''custom_connection'': users supply their own URL or client details at connection time (e.g. Snowflake).
+
+            • ''none'': no authentication (authless) — anyone can connect and call tools without credentials.'
+        partialAuth:
+          type: boolean
+          description: Whether some tools return 401 and prompt for auth on demand while the server otherwise starts authless (partial auth).
+        apiOwnership:
+          enum:
+          - first_party
+          - proxied
+          - third_party
+          type: string
+          description: 'How your connector relates to the API it calls:
+
+            • ''first_party'': the MCP server calls your own production APIs.
+
+            • ''proxied'': calls go to a third-party API you''re authorized to integrate (e.g. a Zapier-style integration).
+
+            • ''third_party'': calls a third-party API you don''t control — typically blocks listing; explain in ''additionalNotes''.'
+        personalHealthData:
+          anyOf:
+          - type: boolean
+          - type: object
+            properties:
+              other:
+                type: string
+            required:
+            - other
+          description: 'Whether this connector accesses, processes, or stores personal health information.
+
+            No → false, Yes → true, or { other: explanation } when it depends on configuration.'
+        sponsoredContent:
+          anyOf:
+          - type: boolean
+          - type: object
+            properties:
+              other:
+                type: string
+            required:
+            - other
+          description: 'Whether this connector surfaces sponsored, promoted, or advertising content (prohibited in directory connectors).
+
+            No → false, Yes → true, or { other: explanation }.'
+        testInstructions:
+          type: string
+          description: 'Clear test-account setup and access instructions for reviewers: every link, credential, and step needed to access
+
+            the MCP server autonomously. For accounts that need to be populated, provide test credentials granting access to a
+
+            fully populated account.'
+        selfTested:
+          type: boolean
+          description: Confirmation that you have run every tool via MCP Inspector or as a custom connector in Claude.
+        policyAcknowledgements:
+          type: array
+          items:
+            enum:
+            - I have read and understand the MCP Directory developer guidelines.
+            - My server calls our own first-party APIs (or APIs we legitimately proxy with permission).
+            - My connector does not transfer money, cryptocurrency, or other financial assets on a user's behalf.
+            - My connector does not use AI models to generate images, video, or audio.
+            - Tool descriptions contain no instructions about model behavior, other tools, or external instruction sources, and no hidden or encoded text.
+            - My connector does not collect conversation data beyond what is needed for its function.
+            - Public documentation for this connector will be live by the publish date.
+            type: string
+          description: 'Anthropic directory policy acknowledgements. All items must be acknowledged before the claude.ai wizard allows
+
+            submission. Each is an attestation you are legally agreeing to by submitting.'
+        additionalNotes:
+          type: string
+          description: Anything else the review team should know about your connector. Optional.
+    ChatgptSubmissionFormDataUpdate:
+      type: object
+      properties:
+        logoLight:
+          type: string
+          description: Logo icon for light mode. Square PNG, no borders or rounded corners (clients apply circular cropping).
+        logoDark:
+          type: string
+          description: Optional dark-mode logo icon. Square PNG, same specs as the light icon. Leave empty if the light icon also works on dark backgrounds.
+        appName:
+          type: string
+          description: The name users will see in ChatGPT and in the Plugin Directory.
+        tagline:
+          type: string
+        description:
+          type: string
+          description: Clear, engaging description highlighting what the plugin does and why people will love it. Appears publicly on the directory page. End it by naming the product categories or intents the plugin does NOT cover, so ChatGPT learns when not to route to it (define exclusions by absent categories or wrong intents, never by naming other brands).
+        category:
+          enum:
+          - BUSINESS
+          - COLLABORATION
+          - DESIGN
+          - DEVELOPER_TOOLS
+          - EDUCATION
+          - ENTERTAINMENT
+          - FINANCE
+          - FOOD
+          - LIFESTYLE
+          - NEWS
+          - PRODUCTIVITY
+          - SHOPPING
+          - TRAVEL
+          type: string
+          description: Category from the OpenAI taxonomy.
+        developerName:
+          type: string
+          description: Developer name shown publicly on the plugin's directory page.
+        companyUrl:
+          type: string
+        supportChannel:
+          type: string
+        privacyPolicyUrl:
+          type: string
+        termsOfServiceUrl:
+          type: string
+        demoRecordingUrl:
+          type: string
+        appCommerceAndPurchasing:
+          type: boolean
+          description: 'Checkbox: ''My plugin links or directs users out of ChatGPT to make purchases.'' Defaults to false. Verify the plugin does not offer digital goods.'
+        serverUrl:
+          type: string
+        authentication:
+          enum:
+          - No auth needed
+          - OAuth 2.0
+          type: string
+          description: OAuth 2.0 or No auth. OAuth configuration is auto-discovered from the MCP server's metadata.
+        tools:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              title:
+                type: string
+                description: Human-friendly name for the tool, used in the UI. If not provided, `name` will be used.
+              description:
+                type: string
+              annotations:
+                type: object
+                properties:
+                  readOnlyHint:
+                    type: boolean
+                  destructiveHint:
+                    type: boolean
+                  openWorldHint:
+                    type: boolean
+                  idempotentHint:
+                    type: boolean
+            required:
+            - name
+          description: List of tools exposed by the MCP server (auto-populated from the production server's manifest).
+        toolJustifications:
+          type: array
+          items:
+            type: object
+            properties:
+              toolName:
+                type: string
+              readOnlyJustification:
+                type: string
+                description: One sentence on what the tool reads and returns.
+              openWorldJustification:
+                type: string
+                description: One sentence on whether the tool reaches external systems beyond your own service.
+              destructiveJustification:
+                type: string
+                description: 'One sentence on whether the tool changes data. For a read-only tool, state the full triad: "No data is created, modified, or deleted."'
+            required:
+            - toolName
+            - readOnlyJustification
+            - openWorldJustification
+            - destructiveJustification
+            description: Per-tool justification of each MCP annotation value (one specific sentence per hint).
+          description: Per-tool justification of `readOnlyHint`, `openWorldHint`, and `destructiveHint` annotation values. One short, specific sentence per hint describing what the tool actually does.
+        skills:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+            required:
+            - name
+            description: A skill discovered on the MCP server, by name.
+          description: Skills the server exposes over MCP (auto-populated from the production server's manifest). Left unset when the server does not advertise the skills extension, which is a different state from advertising it and exposing none.
+        testCases:
+          type: array
+          items:
+            type: object
+            properties:
+              scenario:
+                type: string
+              userPrompt:
+                type: string
+              toolTriggered:
+                type: string
+                description: The tool this prompt should invoke.
+              expectedOutput:
+                type: string
+                description: What the user should see, including post-interaction behaviour where relevant.
+        negativeTestCases:
+          type: array
+          items:
+            type: object
+            properties:
+              scenario:
+                type: string
+              userPrompt:
+                type: string
+        screenshots:
+          type: array
+          items:
+            type: object
+            properties:
+              prompt:
+                type: string
+              url:
+                type: string
+            required:
+            - prompt
+            - url
+        translations:
+          type: array
+          items:
+            type: object
+            properties:
+              locale:
+                enum:
+                - am
+                - ar
+                - bg-BG
+                - bn-BD
+                - bs-BA
+                - ca-ES
+                - cs-CZ
+                - da-DK
+                - de-DE
+                - el-GR
+                - es-419
+                - es-ES
+                - et-EE
+                - fi-FI
+                - fr-CA
+                - fr-FR
+                - gu-IN
+                - hi-IN
+                - hr-HR
+                - hu-HU
+                - hy-AM
+                - id-ID
+                - is-IS
+                - it-IT
+                - ja-JP
+                - ka-GE
+                - kk
+                - kn-IN
+                - ko-KR
+                - lt
+                - lv-LV
+                - mk-MK
+                - ml
+                - mn
+                - mr-IN
+                - ms-MY
+                - my-MM
+                - nb-NO
+                - nl-NL
+                - pa
+                - pl-PL
+                - pt-BR
+                - pt-PT
+                - ro-RO
+                - ru-RU
+                - sk-SK
+                - sl-SI
+                - so-SO
+                - sq-AL
+                - sr-RS
+                - sv-SE
+                - sw-TZ
+                - ta-IN
+                - te-IN
+                - th-TH
+                - tl
+                - tr-TR
+                - uk-UA
+                - ur
+                - vi-VN
+                - zh-CN
+                - zh-HK
+                - zh-TW
+                type: string
+              tagline:
+                type: string
+              description:
+                type: string
+            required:
+            - locale
+            - tagline
+            - description
+        allowedCountries:
+          anyOf:
+          - type: object
+            properties:
+              mode:
+                const: all
+            required:
+            - mode
+          - type: object
+            properties:
+              mode:
+                const: allow
+              countries:
+                type: array
+                items:
+                  enum:
+                  - AD
+                  - AE
+                  - AF
+                  - AG
+                  - AL
+                  - AM
+                  - AO
+                  - AR
+                  - AT
+                  - AU
+                  - AW
+                  - AX
+                  - AZ
+                  - BA
+                  - BB
+                  - BD
+                  - BE
+                  - BF
+                  - BG
+                  - BH
+                  - BI
+                  - BJ
+                  - BL
+                  - BM
+                  - BN
+                  - BO
+                  - BR
+                  - BS
+                  - BT
+                  - BW
+                  - BZ
+                  - CA
+                  - CD
+                  - CF
+                  - CG
+                  - CH
+                  - CI
+                  - CL
+                  - CM
+                  - CO
+                  - CR
+                  - CV
+                  - CY
+                  - CZ
+                  - DE
+                  - DJ
+                  - DK
+                  - DM
+                  - DO
+                  - DZ
+                  - EC
+                  - EE
+                  - EG
+                  - ER
+                  - ES
+                  - ET
+                  - FI
+                  - FJ
+                  - FM
+                  - FO
+                  - FR
+                  - GA
+                  - GB
+                  - GD
+                  - GE
+                  - GF
+                  - GH
+                  - GL
+                  - GM
+                  - GN
+                  - GP
+                  - GQ
+                  - GR
+                  - GT
+                  - GW
+                  - GY
+                  - HN
+                  - HR
+                  - HT
+                  - HU
+                  - ID
+                  - IE
+                  - IL
+                  - IN
+                  - IQ
+                  - IS
+                  - IT
+                  - JM
+                  - JO
+                  - JP
+                  - KE
+                  - KG
+                  - KH
+                  - KI
+                  - KM
+                  - KN
+                  - KR
+                  - KW
+                  - KY
+                  - KZ
+                  - LA
+                  - LB
+                  - LC
+                  - LI
+                  - LK
+                  - LR
+                  - LS
+                  - LT
+                  - LU
+                  - LV
+                  - LY
+                  - MA
+                  - MC
+                  - MD
+                  - ME
+                  - MF
+                  - MG
+                  - MH
+                  - MK
+                  - ML
+                  - MM
+                  - MN
+                  - MQ
+                  - MR
+                  - MT
+                  - MU
+                  - MV
+                  - MW
+                  - MX
+                  - MY
+                  - MZ
+                  - NA
+                  - NC
+                  - NE
+                  - NG
+                  - NI
+                  - NL
+                  - 'NO'
+                  - NP
+                  - NR
+                  - NZ
+                  - OM
+                  - PA
+                  - PE
+                  - PF
+                  - PG
+                  - PH
+                  - PK
+                  - PL
+                  - PM
+                  - PS
+                  - PT
+                  - PW
+                  - PY
+                  - QA
+                  - RE
+                  - RO
+                  - RS
+                  - RW
+                  - SA
+                  - SB
+                  - SC
+                  - SD
+                  - SE
+                  - SG
+                  - SH
+                  - SI
+                  - SJ
+                  - SK
+                  - SL
+                  - SM
+                  - SN
+                  - SO
+                  - SR
+                  - SS
+                  - ST
+                  - SV
+                  - SZ
+                  - TD
+                  - TF
+                  - TG
+                  - TH
+                  - TJ
+                  - TL
+                  - TM
+                  - TN
+                  - TO
+                  - TR
+                  - TT
+                  - TV
+                  - TW
+                  - TZ
+                  - UA
+                  - UG
+                  - US
+                  - UY
+                  - UZ
+                  - VA
+                  - VC
+                  - VN
+                  - VU
+                  - WF
+                  - WS
+                  - YE
+                  - YT
+                  - ZA
+                  - ZM
+                  - ZW
+                  type: string
+            required:
+            - mode
+            - countries
+          - type: object
+            properties:
+              mode:
+                const: block
+              countries:
+                type: array
+                items:
+                  enum:
+                  - AD
+                  - AE
+                  - AF
+                  - AG
+                  - AL
+                  - AM
+                  - AO
+                  - AR
+                  - AT
+                  - AU
+                  - AW
+                  - AX
+                  - AZ
+                  - BA
+                  - BB
+                  - BD
+                  - BE
+                  - BF
+                  - BG
+                  - BH
+                  - BI
+                  - BJ
+                  - BL
+                  - BM
+                  - BN
+                  - BO
+                  - BR
+                  - BS
+                  - BT
+                  - BW
+                  - BZ
+                  - CA
+                  - CD
+                  - CF
+                  - CG
+                  - CH
+                  - CI
+                  - CL
+                  - CM
+                  - CO
+                  - CR
+                  - CV
+                  - CY
+                  - CZ
+                  - DE
+                  - DJ
+                  - DK
+                  - DM
+                  - DO
+                  - DZ
+                  - EC
+                  - EE
+                  - EG
+                  - ER
+                  - ES
+                  - ET
+                  - FI
+                  - FJ
+                  - FM
+                  - FO
+                  - FR
+                  - GA
+                  - GB
+                  - GD
+                  - GE
+                  - GF
+                  - GH
+                  - GL
+                  - GM
+                  - GN
+                  - GP
+                  - GQ
+                  - GR
+                  - GT
+                  - GW
+                  - GY
+                  - HN
+                  - HR
+                  - HT
+                  - HU
+                  - ID
+                  - IE
+                  - IL
+                  - IN
+                  - IQ
+                  - IS
+                  - IT
+                  - JM
+                  - JO
+                  - JP
+                  - KE
+                  - KG
+                  - KH
+                  - KI
+                  - KM
+                  - KN
+                  - KR
+                  - KW
+                  - KY
+                  - KZ
+                  - LA
+                  - LB
+                  - LC
+                  - LI
+                  - LK
+                  - LR
+                  - LS
+                  - LT
+                  - LU
+                  - LV
+                  - LY
+                  - MA
+                  - MC
+                  - MD
+                  - ME
+                  - MF
+                  - MG
+                  - MH
+                  - MK
+                  - ML
+                  - MM
+                  - MN
+                  - MQ
+                  - MR
+                  - MT
+                  - MU
+                  - MV
+                  - MW
+                  - MX
+                  - MY
+                  - MZ
+                  - NA
+                  - NC
+                  - NE
+                  - NG
+                  - NI
+                  - NL
+                  - 'NO'
+                  - NP
+                  - NR
+                  - NZ
+                  - OM
+                  - PA
+                  - PE
+                  - PF
+                  - PG
+                  - PH
+                  - PK
+                  - PL
+                  - PM
+                  - PS
+                  - PT
+                  - PW
+                  - PY
+                  - QA
+                  - RE
+                  - RO
+                  - RS
+                  - RW
+                  - SA
+                  - SB
+                  - SC
+                  - SD
+                  - SE
+                  - SG
+                  - SH
+                  - SI
+                  - SJ
+                  - SK
+                  - SL
+                  - SM
+                  - SN
+                  - SO
+                  - SR
+                  - SS
+                  - ST
+                  - SV
+                  - SZ
+                  - TD
+                  - TF
+                  - TG
+                  - TH
+                  - TJ
+                  - TL
+                  - TM
+                  - TN
+                  - TO
+                  - TR
+                  - TT
+                  - TV
+                  - TW
+                  - TZ
+                  - UA
+                  - UG
+                  - US
+                  - UY
+                  - UZ
+                  - VA
+                  - VC
+                  - VN
+                  - VU
+                  - WF
+                  - WS
+                  - YE
+                  - YT
+                  - ZA
+                  - ZM
+                  - ZW
+                  type: string
+            required:
+            - mode
+            - countries
+          description: 'Availability: all supported countries, or an allow-list / block-list of specific ones (ISO alpha-2).'
+        releaseNotes:
+          type: string
+          description: Publicly displayed on the plugin details page.
+      additionalProperties: false
+    ClaudeSubmissionFormDataUpdate:
+      type: object
+      properties:
+        serverUrl:
+          type: string
+        name:
+          type: string
+        slug:
+          type: string
+        oneLiner:
+          type: string
+        description:
+          type: string
+        categories:
+          type: array
+          items:
+            enum:
+            - Productivity
+            - Communication
+            - Data & Analytics
+            - Development tools
+            - Financial Services
+            - Consumer Health
+            - Health & Life Sciences
+            - Media & Entertainment
+            - Commerce & Shopping
+            - Legal
+            - Sales and marketing
+            - Creative
+            - Nonprofit
+            - Education
+            - Other
+            type: string
+        iconUrl:
+          type: string
+        documentation:
+          type: string
+        support:
+          type: string
+        privacyPolicy:
+          type: string
+        screenshots:
+          type: array
+          items:
+            type: object
+            properties:
+              prompt:
+                type: string
+              url:
+                type: string
+            required:
+            - prompt
+            - url
+        primaryUseCases:
+          type: string
+          description: 'Describe the main tasks users will accomplish with this connector, and include a few example prompts a user might
+
+            type. These may be shown publicly but are primarily used for internal review — reviewers test your server using them.'
+        connectionRequirements:
+          type: string
+          description: 'What accounts, permissions, or setup a user needs before connecting (e.g. ''Requires a paid Acme account with admin
+
+            permissions''). If there are genuinely no special requirements, say so explicitly.'
+        readWriteCapabilities:
+          enum:
+          - read_only
+          - write_only
+          - read_write
+          type: string
+          description: 'What your server can do:
+
+            • ''read_only'': retrieves data but never modifies it.
+
+            • ''write_only'': creates or modifies data but does not read it.
+
+            • ''read_write'': both retrieves and modifies data (most common).'
+        companyName:
+          type: string
+          description: The company or organization behind this connector — its legal name or publicly known product name.
+        companyWebsite:
+          type: string
+        primaryContactName:
+          type: string
+          description: Full name of the person Anthropic should contact about this submission. Receives review feedback and follow-up questions.
+        primaryContactEmail:
+          type: string
+        primaryContactRole:
+          type: string
+          description: The primary contact's role at the company (e.g. 'Engineer', 'Product Manager'). Optional.
+        anthropicPointOfContact:
+          type: string
+          description: If you've been working with someone at Anthropic, their name or email. Optional, can expedite review.
+        authentication:
+          enum:
+          - oauth_dcr
+          - oauth_cimd
+          - oauth_anthropic_creds
+          - custom_connection
+          - none
+          type: string
+          description: 'How users authenticate with your server:
+
+            • ''oauth_dcr'': OAuth 2.0 + Dynamic Client Registration (RFC 7591) — clients register themselves.
+
+            • ''oauth_cimd'': OAuth 2.0 + Client ID Metadata Document — a published client_id metadata document.
+
+            • ''oauth_anthropic_creds'': OAuth 2.0 with Anthropic-held client credentials (a static client_id, and secret if needed).
+
+            • ''custom_connection'': users supply their own URL or client details at connection time (e.g. Snowflake).
+
+            • ''none'': no authentication (authless) — anyone can connect and call tools without credentials.'
+        partialAuth:
+          type: boolean
+          description: Whether some tools return 401 and prompt for auth on demand while the server otherwise starts authless (partial auth).
+        apiOwnership:
+          enum:
+          - first_party
+          - proxied
+          - third_party
+          type: string
+          description: 'How your connector relates to the API it calls:
+
+            • ''first_party'': the MCP server calls your own production APIs.
+
+            • ''proxied'': calls go to a third-party API you''re authorized to integrate (e.g. a Zapier-style integration).
+
+            • ''third_party'': calls a third-party API you don''t control — typically blocks listing; explain in ''additionalNotes''.'
+        personalHealthData:
+          anyOf:
+          - type: boolean
+          - type: object
+            properties:
+              other:
+                type: string
+            required:
+            - other
+          description: 'Whether this connector accesses, processes, or stores personal health information.
+
+            No → false, Yes → true, or { other: explanation } when it depends on configuration.'
+        sponsoredContent:
+          anyOf:
+          - type: boolean
+          - type: object
+            properties:
+              other:
+                type: string
+            required:
+            - other
+          description: 'Whether this connector surfaces sponsored, promoted, or advertising content (prohibited in directory connectors).
+
+            No → false, Yes → true, or { other: explanation }.'
+        testInstructions:
+          type: string
+          description: 'Clear test-account setup and access instructions for reviewers: every link, credential, and step needed to access
+
+            the MCP server autonomously. For accounts that need to be populated, provide test credentials granting access to a
+
+            fully populated account.'
+        selfTested:
+          type: boolean
+          description: Confirmation that you have run every tool via MCP Inspector or as a custom connector in Claude.
+        policyAcknowledgements:
+          type: array
+          items:
+            enum:
+            - I have read and understand the MCP Directory developer guidelines.
+            - My server calls our own first-party APIs (or APIs we legitimately proxy with permission).
+            - My connector does not transfer money, cryptocurrency, or other financial assets on a user's behalf.
+            - My connector does not use AI models to generate images, video, or audio.
+            - Tool descriptions contain no instructions about model behavior, other tools, or external instruction sources, and no hidden or encoded text.
+            - My connector does not collect conversation data beyond what is needed for its function.
+            - Public documentation for this connector will be live by the publish date.
+            type: string
+          description: 'Anthropic directory policy acknowledgements. All items must be acknowledged before the claude.ai wizard allows
+
+            submission. Each is an attestation you are legally agreeing to by submitting.'
+        additionalNotes:
+          type: string
+          description: Anything else the review team should know about your connector. Optional.
+      additionalProperties: false
+    Submission:
+      anyOf:
+      - type: object
+        properties:
+          id:
+            type: string
+          environmentId:
+            type: string
+          auditId:
+            anyOf:
+            - type: string
+            - type: 'null'
+          urlVerification:
+            anyOf:
+            - type: object
+              properties:
+                verifiedAt:
+                  type: string
+                  format: date-time
+                  x-native-type: date
+                results:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      field:
+                        enum:
+                        - privacyPolicyUrl
+                        - termsOfServiceUrl
+                        - privacyPolicy
+                        type: string
+                      url:
+                        type: string
+                      outcome:
+                        enum:
+                        - pass
+                        - fail
+                        - unverified
+                        type: string
+                      reason:
+                        type: string
+                      concerns:
+                        type: array
+                        items:
+                          type: string
+                      scrapedWith:
+                        enum:
+                        - fetch
+                        - firecrawl
+                        type: string
+                    required:
+                    - field
+                    - url
+                    - outcome
+                    - reason
+              required:
+              - verifiedAt
+              - results
+            - type: 'null'
+            default: null
+          createdAt:
+            type: string
+            format: date-time
+            x-native-type: date
+          updatedAt:
+            type: string
+            format: date-time
+            x-native-type: date
+          platform:
+            const: claudeai
+          formData:
+            $ref: '#/components/schemas/ClaudeSubmissionFormData'
+          prefillSnapshot:
+            anyOf:
+            - $ref: '#/components/schemas/ClaudeSubmissionFormData'
+            - type: 'null'
+            default: null
+        required:
+        - id
+        - environmentId
+        - auditId
+        - createdAt
+        - updatedAt
+        - platform
+        - formData
+      - type: object
+        properties:
+          id:
+            type: string
+          environmentId:
+            type: string
+          auditId:
+            anyOf:
+            - type: string
+            - type: 'null'
+          urlVerification:
+            anyOf:
+            - type: object
+              properties:
+                verifiedAt:
+                  type: string
+                  format: date-time
+                  x-native-type: date
+                results:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      field:
+                        enum:
+                        - privacyPolicyUrl
+                        - termsOfServiceUrl
+                        - privacyPolicy
+                        type: string
+                      url:
+                        type: string
+                      outcome:
+                        enum:
+                        - pass
+                        - fail
+                        - unverified
+                        type: string
+                      reason:
+                        type: string
+                      concerns:
+                        type: array
+                        items:
+                          type: string
+                      scrapedWith:
+                        enum:
+                        - fetch
+                        - firecrawl
+                        type: string
+                    required:
+                    - field
+                    - url
+                    - outcome
+                    - reason
+              required:
+              - verifiedAt
+              - results
+            - type: 'null'
+            default: null
+          createdAt:
+            type: string
+            format: date-time
+            x-native-type: date
+          updatedAt:
+            type: string
+            format: date-time
+            x-native-type: date
+          platform:
+            const: chatgpt
+          formData:
+            $ref: '#/components/schemas/ChatgptSubmissionFormData'
+          prefillSnapshot:
+            anyOf:
+            - $ref: '#/components/schemas/ChatgptSubmissionFormData'
+            - type: 'null'
+            default: null
+        required:
+        - id
+        - environmentId
+        - auditId
+        - createdAt
+        - updatedAt
+        - platform
+        - formData
+  securitySchemes:
+    bearerAuth:
+      type: http
+      description: Bearer token for authentication. Use an API key from the API Keys page in team settings, or an OAuth access token.
+      scheme: bearer

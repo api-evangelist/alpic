@@ -271,6 +271,36 @@ apis:
     url: lifecycle/alpic-lifecycle.yml
   - type: Conformance
     url: conformance/alpic-conformance.yml
+- aid: alpic:alpic-insights-api
+  name: Alpic Insights API
+  description: The insights API from Alpic — 6 operation(s) for insights.
+  humanURL: https://docs.alpic.ai/api-reference
+  baseURL: https://api.alpic.ai
+  tags:
+  - insights
+  properties:
+  - type: OpenAPI
+    url: openapi/alpic-insights-api-openapi.yml
+- aid: alpic:alpic-submissions-api
+  name: Alpic Submissions API
+  description: The submissions API from Alpic — 3 operation(s) for submissions.
+  humanURL: https://docs.alpic.ai/api-reference
+  baseURL: https://api.alpic.ai
+  tags:
+  - submissions
+  properties:
+  - type: OpenAPI
+    url: openapi/alpic-submissions-api-openapi.yml
+- aid: alpic:alpic-telemetry-api
+  name: Alpic Telemetry API
+  description: The telemetry API from Alpic — 2 operation(s) for telemetry.
+  humanURL: https://docs.alpic.ai/api-reference
+  baseURL: https://api.alpic.ai
+  tags:
+  - telemetry
+  properties:
+  - type: OpenAPI
+    url: openapi/alpic-telemetry-api-openapi.yml
 common:
 - type: CapabilityMap
   url: capabilities/alpic-capability-edges.yml
