@@ -121,3 +121,9 @@ components:
       type: http
       description: Bearer token for authentication. Use an API key from the API Keys page in team settings, or an OAuth access token.
       scheme: bearer
+x-provenance:
+  method: harvested
+  publisher: Alpic
+  source: https://api.alpic.ai/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
